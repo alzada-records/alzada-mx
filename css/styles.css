@@ -875,3 +875,22 @@ label {
 @media (max-width: 899px) {
   .sync img { order: 2; }
 }
+
+/* Sync en negro para que contraste con Nosotros */
+.sync {
+  background: var(--color-oscuro);
+  color: var(--color-oscuro-texto);
+  border-bottom-color: var(--color-oscuro-borde);
+}
+
+.sync p {
+  color: var(--color-oscuro-suave);
+}
+
+.sync a {
+  color: var(--color-oscuro-texto);
+}
+
+.sync :focus-visible {
+  outline-color: var(--color-oscuro-texto);
+}
