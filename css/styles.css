@@ -894,3 +894,76 @@ label {
 .sync :focus-visible {
   outline-color: var(--color-oscuro-texto);
 }
+
+/* ---------- Contacto (mismo diseño que ladrones.mx, en claro) ---------- */
+.contactos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactos li {
+  padding: 1.5rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.contactos h2 {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--color-acento);
+}
+
+.contactos p {
+  margin: 0.25rem 0 0;
+  color: var(--color-texto-suave);
+}
+
+.contactos .contacto-nombre {
+  font-family: var(--fuente-titulos);
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  color: var(--color-texto);
+}
+
+.contactos .contacto-nombre span {
+  font-family: var(--fuente-texto);
+  text-transform: none;
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+.contactos a {
+  color: var(--color-texto);
+  text-decoration: underline;
+  text-decoration-color: var(--color-acento);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+  transition: color 0.15s;
+}
+
+.contactos a:hover,
+.contactos a:focus-visible {
+  color: var(--color-acento);
+}
+
+
+
+.contactos li {
+  scroll-margin-top: 110px;
+}
+
+.contactos li:target {
+  border-color: var(--color-acento);
+}
+
+.artista-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}

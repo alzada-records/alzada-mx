@@ -34,6 +34,13 @@ REDES_ALZADA = {
     "apple": "https://music.apple.com/mx/artist/alzada/299724687",
 }
 TIENDA = "https://alzadastreetwear.com/collections/merch-alzada"
+
+# Tarjetas de la página de Contacto. "correo" vacío = pendiente (la tarjeta dice "Próximamente").
+CONTACTOS = [
+    {"id": "contrataciones", "titulo": "Contrataciones", "texto": "Shows, festivales y eventos privados con artistas de Alzada.", "correo": ""},
+    {"id": "sync", "titulo": "Sync / Licensing", "texto": "Música de nuestro catálogo para cine, series, campañas, videojuegos y contenido digital.", "correo": ""},
+    {"id": "general", "titulo": "Marcas y prensa", "texto": "Colaboraciones con marcas, entrevistas y todo lo demás.", "correo": ""},
+]
 MAILCHIMP = "https://alzada.us19.list-manage.com/subscribe/post?u=32d94c0e4051438d818e68013&amp;id=4bd0645e6c&amp;f_id=00b59be3f0"
 TRAMPA = "b_32d94c0e4051438d818e68013_4bd0645e6c"
 
@@ -76,6 +83,7 @@ def cabeza(titulo, descripcion, ruta, imagen, extra=""):
           <li><a href="/#merch">Merch</a></li>
           <li><a href="/#nosotros">Nosotros</a></li>
           <li><a href="/#sync">Sync</a></li>
+          <li><a href="/contacto/"{' aria-current="page"' if ruta == "/contacto/" else ""}>Contacto</a></li>
         </ul>
       </nav>
     </div>
@@ -264,6 +272,7 @@ def inicio():
           <h2 id="titulo-sync">Sync / Licensing</h2>
           <p>En <span translate="no">Alzada</span>, la sincronización y el licensing convierten la música en un activo estratégico. Nuestro catálogo reúne propuestas auténticas y versátiles, listas para integrarse en películas, series, campañas, videojuegos y contenido digital, aportando identidad, emoción y valor a cada proyecto.</p>
           <p>Trabajamos de forma ágil y curatorial, facilitando la gestión de derechos, autorizaciones y entregables para acelerar procesos sin fricción. Desde la selección del track ideal hasta el cierre de la licencia, alineamos creatividad con objetivos comerciales, ayudando a marcas, agencias y productoras a conectar con nuevas audiencias a través de la música.</p>
+          <p><a class="boton" href="/contacto/#sync">Contactar</a></p>
         </div>
       </div>
     </section>
@@ -279,9 +288,10 @@ def pagina_artista(a):
                   f"/img/artistas/{a['slug']}-800.webp",
                   '  <script src="/js/videos.js" defer></script>\n' if a.get("canal_youtube") else "")
     parrafos = "\n".join(f"          <p>{escape(p)}</p>" for p in a["bio"])
-    sitio = ""
+    sitio = '\n          <p class="artista-botones"><a class="boton" href="/contacto/#contrataciones">Contrataciones</a>'
     if a.get("sitio"):
-        sitio = f'\n          <p><a class="boton boton-secundario" href="{a["sitio"]}" target="_blank" rel="noopener">Sitio oficial</a></p>'
+        sitio += f'\n             <a class="boton boton-secundario" href="{a["sitio"]}" target="_blank" rel="noopener">Sitio oficial</a>'
+    sitio += '</p>'
     musica = ""
     if spotify:
         embed = spotify.replace("open.spotify.com/artist/", "open.spotify.com/embed/artist/")
@@ -353,7 +363,39 @@ def pagina_artista(a):
     (carpeta / "index.html").write_text(html, encoding="utf-8")
 
 
+def contacto():
+    html = cabeza("Contacto | Alzada Records",
+                  "Contacta a Alzada Records para contrataciones de artistas, sync / licensing, marcas y prensa.",
+                  "/contacto/", "/img/compartir.jpg")
+    tarjetas = []
+    for c in CONTACTOS:
+        if c["correo"]:
+            enlace = f'<p class="contacto-nombre"><a href="mailto:{c["correo"]}">{c["correo"]}</a></p>'
+        else:
+            enlace = '<p class="contacto-nombre">Próximamente</p>'
+        tarjetas.append(f"""          <li id="{c['id']}">
+            <h2>{escape(c['titulo'])}</h2>
+            {enlace}
+            <p>{escape(c['texto'])}</p>
+          </li>""")
+    lista = "\n".join(tarjetas)
+    html += f"""
+    <section class="seccion">
+      <div class="contenedor">
+        <h1>Contacto</h1>
+        <ul class="contactos">
+{lista}
+        </ul>
+      </div>
+    </section>
+{newsletter()}{pie()}"""
+    carpeta = RAIZ / "contacto"
+    carpeta.mkdir(exist_ok=True)
+    (carpeta / "index.html").write_text(html, encoding="utf-8")
+
+
 inicio()
+contacto()
 for artista in ARTISTAS:
     pagina_artista(artista)
-print("Listo:", 1 + len(ARTISTAS), "páginas")
+print("Listo:", 2 + len(ARTISTAS), "páginas")
