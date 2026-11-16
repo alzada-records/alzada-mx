@@ -1,0 +1,14 @@
+# Reglas para Netlify (se leen de arriba hacia abajo)
+
+# Siempre en www
+https://alzada.mx/*  https://www.alzada.mx/:splat  301!
+
+# Páginas viejas de Wix que ahora son secciones del inicio
+/nosotros          /#nosotros  301
+/sync-licensing    /#sync      301
+/blog              /           301
+/blog/*            /           301
+/post/*            /           301
+/event-details/*   /           301
+/profile/*         /           301
+/members/*         /           301

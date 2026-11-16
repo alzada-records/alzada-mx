@@ -20,5 +20,5 @@ Sitio web de Alzada (alzada.mx), HTML y CSS sin CMS. Misma base que ladrones.mx.
 - [ ] Redes de MAHO (ya está su Spotify; faltan Instagram, TikTok, YouTube, Facebook, Apple Music)
 - [ ] Versión en inglés en `/en/`
 - [ ] Correo de quien atiende cada tipo de solicitud de Contacto (se pone en Netlify > Forms > notificaciones, uno por formulario `contacto-<tipo>`)
-- [ ] Redirecciones de Wix (`/blog`), sitemap y robots
+- [x] Redirecciones de Wix, sitemap (se arma solo con generar.py), robots y página 404
 - [ ] Netlify y dominio alzada.mx

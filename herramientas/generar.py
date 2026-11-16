@@ -501,8 +501,32 @@ def contacto():
     (carpeta / "index.html").write_text(html, encoding="utf-8")
 
 
+def pagina_404():
+    html = cabeza("Página no encontrada | Alzada Records", "Esta página no existe.", "/404.html", "/img/compartir.jpg")
+    html = html.replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n  <meta name="viewport"', 1)
+    html += f"""
+    <section class="seccion">
+      <div class="contenedor">
+        <h1>Página no encontrada</h1>
+        <p class="seccion-intro">La página que buscas no existe o cambió de lugar.</p>
+        <p><a class="boton" href="/">Ir al inicio</a> <a class="boton boton-secundario" href="/#roster">Ver roster</a></p>
+      </div>
+    </section>
+{pie()}"""
+    (RAIZ / "404.html").write_text(html, encoding="utf-8")
+
+def sitemap():
+    urls = ["/", "/contacto/"] + [f"/{a['slug']}/" for a in ARTISTAS]
+    lineas = "\n".join(f"  <url><loc>{DOMINIO}{u}</loc></url>" for u in urls)
+    (RAIZ / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{lineas}\n</urlset>\n", encoding="utf-8")
+
 inicio()
+pagina_404()
+sitemap()
 contacto()
 for artista in ARTISTAS:
     pagina_artista(artista)
-print("Listo:", 2 + len(ARTISTAS), "páginas")
+print("Listo:", 3 + len(ARTISTAS), "páginas")
