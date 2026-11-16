@@ -40,6 +40,30 @@ REDES_ALZADA = {
 }
 TIENDA = "https://alzadastreetwear.com/collections/merch-alzada"
 
+# Lanzamientos destacados del encabezado del inicio (rotan cada 10 s), en orden.
+#   fondo: foto de fondo (versión chica para celular y grande para compu)
+#   portada: arte del disco (local o de Spotify)
+HERO = [
+    {"artista": "Ladrones", "titulo": "Arriba La L", "tipo": "Nuevo álbum · 2026",
+     "portada": "/img/lanzamientos/arriba-la-l.webp",
+     "fondo": ("/img/fondos/musica-960.webp", "/img/fondos/musica-1920.webp"),
+     "posicion": "center 20%",
+     "escuchar": "https://open.spotify.com/album/1XKtSl05ezH6lWTmVgTLUL",
+     "mas": ("Toda la música", "https://www.ladrones.mx/lanzamientos/")},
+    {"artista": "Toser One", "titulo": "Trankilon", "tipo": "Nuevo sencillo · 2026",
+     "portada": "https://i.scdn.co/image/ab67616d00001e02b963875867bace9f797e7dc9",
+     "fondo": ("/img/artistas/toser-one-grande.webp", "/img/artistas/toser-one-grande.webp"),
+     "posicion": "center 25%",
+     "escuchar": "https://open.spotify.com/album/6PIPifvLUMtTrjBacOlpqX",
+     "mas": ("Ver artista", "/toser-one/")},
+    {"artista": "Zxmyr", "titulo": "ZXM-YR Mami", "tipo": "Nuevo álbum · 2026",
+     "portada": "https://i.scdn.co/image/ab67616d00001e02834c90c7f6457811efc48042",
+     "fondo": ("/img/artistas/zxmyr-grande.webp", "/img/artistas/zxmyr-grande.webp"),
+     "posicion": "center 30%",
+     "escuchar": "https://open.spotify.com/album/1lQGIOE4Buny19S91SjKKy",
+     "mas": ("Ver artista", "/zxmyr/")},
+]
+
 MAILCHIMP = "https://alzada.us19.list-manage.com/subscribe/post?u=32d94c0e4051438d818e68013&amp;id=4bd0645e6c&amp;f_id=00b59be3f0"
 TRAMPA = "b_32d94c0e4051438d818e68013_4bd0645e6c"
 
@@ -187,6 +211,38 @@ def roster():
     return "\n".join(tarjetas)
 
 
+def hero():
+    diapos, puntos = [], []
+    for i, h in enumerate(HERO):
+        externo = h["mas"][1].startswith("http")
+        mas_extra = ' target="_blank" rel="noopener"' if externo else ""
+        carga = "" if i == 0 else ' loading="lazy"'
+        diapos.append(f"""        <div class="hero-diapo hero-foto{' activa' if i == 0 else ''}" role="group" aria-roledescription="diapositiva" aria-label="{i + 1} de {len(HERO)}"
+          style="--fondo-chico: url('{h['fondo'][0]}'); --fondo-grande: url('{h['fondo'][1]}'); --fondo-posicion: {h['posicion']};">
+          <div class="contenedor">
+            <div class="hero-lanzamiento">
+              <img src="{h['portada']}" alt="Portada de {escape(h['titulo'])}" width="300" height="300"{carga}>
+              <p class="seccion-intro"><span translate="no">{escape(h['artista'])}</span> · {escape(h['tipo'])}</p>
+            </div>
+            <h2 class="hero-titulo"><span translate="no">{escape(h['titulo'])}</span></h2>
+            <p><a class="boton" href="{h['escuchar']}" target="_blank" rel="noopener">Escuchar</a>
+               <a class="boton boton-secundario" href="{h['mas'][1]}"{mas_extra}>{escape(h['mas'][0])}</a></p>
+          </div>
+        </div>""")
+        puntos.append(f'<button type="button" class="hero-punto" aria-label="Ver {escape(h["titulo"])}"></button>')
+    return f"""    <!-- Lanzamientos destacados: rotan cada 10 s (js/hero.js). Se cambian en HERO, arriba en este archivo. -->
+    <section class="hero-carrusel" aria-roledescription="carrusel" aria-label="Lanzamientos destacados">
+      <h1 class="oculto">Alzada Records</h1>
+{chr(10).join(diapos)}
+      <div class="hero-controles contenedor">
+        <div class="hero-puntos">{"".join(puntos)}</div>
+        <button type="button" class="hero-pausa"></button>
+      </div>
+    </section>
+
+"""
+
+
 def inicio():
     html = cabeza("Alzada Records | Disquera mexicana independiente",
                   "Alzada Records: disquera mexicana independiente. Conoce a nuestros artistas, sus lanzamientos y el merch oficial.",
@@ -197,23 +253,10 @@ def inicio():
                   '  <link rel="preconnect" href="https://www.googleapis.com">\n'
                   '  <link rel="preconnect" href="https://alzadastreetwear.com">\n'
                   '  <script src="/js/videos.js" defer></script>\n'
+                  '  <script src="/js/hero.js" defer></script>\n'
                   '  <script src="/js/merch.js" defer></script>\n')
     html += f"""
-    <!-- Lanzamiento destacado (igual al de ladrones.mx). Para cambiarlo: foto de fondo en
-         css/styles.css (.hero-inicio), portada en img/lanzamientos/ y textos y links aquí. -->
-    <section class="seccion portada hero-foto hero-inicio">
-      <div class="contenedor">
-        <div class="hero-lanzamiento">
-          <img src="/img/lanzamientos/arriba-la-l.webp" alt="Portada del álbum Arriba La L" width="800" height="800">
-          <p class="seccion-intro"><span translate="no">Ladrones</span> · Nuevo álbum · 2026</p>
-        </div>
-        <h1><span translate="no">Arriba La L</span></h1>
-        <p><a class="boton" href="https://open.spotify.com/album/1XKtSl05ezH6lWTmVgTLUL" target="_blank" rel="noopener">Escuchar</a>
-           <a class="boton boton-secundario" href="https://www.ladrones.mx/lanzamientos/" target="_blank" rel="noopener">Toda la música</a></p>
-      </div>
-    </section>
-
-{barra_redes(REDES_ALZADA, "Alzada")}
+{hero()}{barra_redes(REDES_ALZADA, "Alzada")}
     <!-- Roster: cada foto lleva a la página del artista -->
     <section class="seccion" id="roster" aria-labelledby="titulo-roster">
       <div class="contenedor">

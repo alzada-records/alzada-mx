@@ -814,23 +814,6 @@ label {
   outline-color: var(--color-oscuro-texto);
 }
 
-.hero-inicio {
-  min-height: clamp(520px, 85vh, 860px);
-  background-image:
-    linear-gradient(to top, rgb(11 11 11 / 1) 0%, rgb(11 11 11 / 0.75) 30%, rgb(11 11 11 / 0.15) 70%),
-    url("/img/fondos/musica-960.webp");
-  background-position: center 20%;
-}
-
-@media (min-width: 900px) {
-  .hero-inicio {
-    background-image:
-      linear-gradient(to top, rgb(11 11 11 / 1) 0%, rgb(11 11 11 / 0.6) 30%, rgb(11 11 11 / 0) 60%),
-      linear-gradient(to right, rgb(11 11 11 / 0.7), rgb(11 11 11 / 0) 50%),
-      url("/img/fondos/musica-1920.webp");
-  }
-}
-
 .hero-lanzamiento {
   display: flex;
   align-items: center;
@@ -1047,4 +1030,101 @@ label {
 
 .videos-inicio :focus-visible {
   outline-color: var(--color-oscuro-texto);
+}
+
+/* ---------- Carrusel del encabezado (rota cada 10 s con js/hero.js) ---------- */
+.hero-carrusel {
+  position: relative;
+  display: grid;
+  background: var(--color-oscuro);
+}
+
+.hero-diapo {
+  grid-area: 1 / 1;
+  min-height: clamp(520px, 85vh, 860px);
+  padding-block: clamp(4rem, 12vw, 9rem) 6rem;
+  background-image:
+    linear-gradient(to top, rgb(11 11 11 / 1) 0%, rgb(11 11 11 / 0.75) 30%, rgb(11 11 11 / 0.15) 70%),
+    var(--fondo-chico);
+  background-position: var(--fondo-posicion, center);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.hero-diapo.activa {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 900px) {
+  .hero-diapo {
+    background-image:
+      linear-gradient(to top, rgb(11 11 11 / 1) 0%, rgb(11 11 11 / 0.6) 30%, rgb(11 11 11 / 0) 60%),
+      linear-gradient(to right, rgb(11 11 11 / 0.7), rgb(11 11 11 / 0) 50%),
+      var(--fondo-grande);
+  }
+}
+
+.hero-titulo {
+  font-size: clamp(2.25rem, 7vw, 4.5rem);
+}
+
+.hero-controles {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-puntos {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.hero-punto {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.hero-punto::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 4px;
+  margin: auto;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.4);
+  transition: background 0.2s;
+}
+
+.hero-punto[aria-current="true"]::before,
+.hero-punto:hover::before {
+  background: #fff;
+}
+
+.hero-pausa {
+  min-width: 44px;
+  min-height: 44px;
+  background: none;
+  border: 1px solid rgb(255 255 255 / 0.4);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.hero-carrusel :focus-visible {
+  outline-color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-diapo { transition: none; }
 }

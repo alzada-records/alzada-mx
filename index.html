@@ -24,6 +24,7 @@
   <link rel="preconnect" href="https://www.googleapis.com">
   <link rel="preconnect" href="https://alzadastreetwear.com">
   <script src="/js/videos.js" defer></script>
+  <script src="/js/hero.js" defer></script>
   <script src="/js/merch.js" defer></script>
   <script src="/js/main.js" defer></script>
   <script src="/js/newsletter.js" defer></script>
@@ -51,17 +52,48 @@
 
   <main id="contenido">
 
-    <!-- Lanzamiento destacado (igual al de ladrones.mx). Para cambiarlo: foto de fondo en
-         css/styles.css (.hero-inicio), portada en img/lanzamientos/ y textos y links aquí. -->
-    <section class="seccion portada hero-foto hero-inicio">
-      <div class="contenedor">
-        <div class="hero-lanzamiento">
-          <img src="/img/lanzamientos/arriba-la-l.webp" alt="Portada del álbum Arriba La L" width="800" height="800">
-          <p class="seccion-intro"><span translate="no">Ladrones</span> · Nuevo álbum · 2026</p>
+    <!-- Lanzamientos destacados: rotan cada 10 s (js/hero.js). Se cambian en HERO, arriba en este archivo. -->
+    <section class="hero-carrusel" aria-roledescription="carrusel" aria-label="Lanzamientos destacados">
+      <h1 class="oculto">Alzada Records</h1>
+        <div class="hero-diapo hero-foto activa" role="group" aria-roledescription="diapositiva" aria-label="1 de 3"
+          style="--fondo-chico: url('/img/fondos/musica-960.webp'); --fondo-grande: url('/img/fondos/musica-1920.webp'); --fondo-posicion: center 20%;">
+          <div class="contenedor">
+            <div class="hero-lanzamiento">
+              <img src="/img/lanzamientos/arriba-la-l.webp" alt="Portada de Arriba La L" width="300" height="300">
+              <p class="seccion-intro"><span translate="no">Ladrones</span> · Nuevo álbum · 2026</p>
+            </div>
+            <h2 class="hero-titulo"><span translate="no">Arriba La L</span></h2>
+            <p><a class="boton" href="https://open.spotify.com/album/1XKtSl05ezH6lWTmVgTLUL" target="_blank" rel="noopener">Escuchar</a>
+               <a class="boton boton-secundario" href="https://www.ladrones.mx/lanzamientos/" target="_blank" rel="noopener">Toda la música</a></p>
+          </div>
         </div>
-        <h1><span translate="no">Arriba La L</span></h1>
-        <p><a class="boton" href="https://open.spotify.com/album/1XKtSl05ezH6lWTmVgTLUL" target="_blank" rel="noopener">Escuchar</a>
-           <a class="boton boton-secundario" href="https://www.ladrones.mx/lanzamientos/" target="_blank" rel="noopener">Toda la música</a></p>
+        <div class="hero-diapo hero-foto" role="group" aria-roledescription="diapositiva" aria-label="2 de 3"
+          style="--fondo-chico: url('/img/artistas/toser-one-grande.webp'); --fondo-grande: url('/img/artistas/toser-one-grande.webp'); --fondo-posicion: center 25%;">
+          <div class="contenedor">
+            <div class="hero-lanzamiento">
+              <img src="https://i.scdn.co/image/ab67616d00001e02b963875867bace9f797e7dc9" alt="Portada de Trankilon" width="300" height="300" loading="lazy">
+              <p class="seccion-intro"><span translate="no">Toser One</span> · Nuevo sencillo · 2026</p>
+            </div>
+            <h2 class="hero-titulo"><span translate="no">Trankilon</span></h2>
+            <p><a class="boton" href="https://open.spotify.com/album/6PIPifvLUMtTrjBacOlpqX" target="_blank" rel="noopener">Escuchar</a>
+               <a class="boton boton-secundario" href="/toser-one/">Ver artista</a></p>
+          </div>
+        </div>
+        <div class="hero-diapo hero-foto" role="group" aria-roledescription="diapositiva" aria-label="3 de 3"
+          style="--fondo-chico: url('/img/artistas/zxmyr-grande.webp'); --fondo-grande: url('/img/artistas/zxmyr-grande.webp'); --fondo-posicion: center 30%;">
+          <div class="contenedor">
+            <div class="hero-lanzamiento">
+              <img src="https://i.scdn.co/image/ab67616d00001e02834c90c7f6457811efc48042" alt="Portada de ZXM-YR Mami" width="300" height="300" loading="lazy">
+              <p class="seccion-intro"><span translate="no">Zxmyr</span> · Nuevo álbum · 2026</p>
+            </div>
+            <h2 class="hero-titulo"><span translate="no">ZXM-YR Mami</span></h2>
+            <p><a class="boton" href="https://open.spotify.com/album/1lQGIOE4Buny19S91SjKKy" target="_blank" rel="noopener">Escuchar</a>
+               <a class="boton boton-secundario" href="/zxmyr/">Ver artista</a></p>
+          </div>
+        </div>
+      <div class="hero-controles contenedor">
+        <div class="hero-puntos"><button type="button" class="hero-punto" aria-label="Ver Arriba La L"></button><button type="button" class="hero-punto" aria-label="Ver Trankilon"></button><button type="button" class="hero-punto" aria-label="Ver ZXM-YR Mami"></button></div>
+        <button type="button" class="hero-pausa"></button>
       </div>
     </section>
 

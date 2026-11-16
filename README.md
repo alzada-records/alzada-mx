@@ -6,6 +6,7 @@ Sitio web de Alzada (alzada.mx), HTML y CSS sin CMS. Misma base que ladrones.mx.
 
 - `datos/artistas.json`: nombre, bio y redes de cada artista. **Aquí se cambian los textos.**
 - `herramientas/generar.py`: arma `index.html` y la página de cada artista (`/c-kan/`, `/maho/`…) a partir de `artistas.json`. Después de cambiar el JSON se vuelve a correr.
+- `js/hero.js` + lista `HERO` en `herramientas/generar.py`: lanzamientos destacados del encabezado del inicio, rotan cada 10 s (pausa con el mouse encima, botón de pausa y "reducir movimiento").
 - `js/videos.js`: reproductor con el estreno más nuevo de un canal de YouTube y los 8 que siguen. En el inicio usa el canal de Alzada y en cada artista su canal (`canal_youtube` en `artistas.json`). Se saltan audios, lyric videos, en vivo, teasers, etc.
 - `js/merch.js`: productos de la colección merch-alzada de Alzada Streetwear (Shopify).
 - `herramientas/formulario.py`: tipos de solicitud de Contacto, sus preguntas extra y el mensaje final de cada uno.
