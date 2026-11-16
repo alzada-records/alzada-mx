@@ -17,7 +17,7 @@ Sitio web de Alzada (alzada.mx), HTML y CSS sin CMS. Misma base que ladrones.mx.
 
 ## Lista de pendientes
 
-- [ ] Redes de MAHO (ya está su Spotify; faltan Instagram, TikTok, YouTube, Facebook, Apple Music)
+- [ ] Instagram de MAHO (ya están YouTube, Facebook, Spotify y Apple Music; no tienen TikTok)
 - [ ] Versión en inglés en `/en/`
 - [ ] Correo de quien atiende cada tipo de solicitud de Contacto (se pone en Netlify > Forms > notificaciones, uno por formulario `contacto-<tipo>`)
 - [x] Redirecciones de Wix, sitemap (se arma solo con generar.py), robots y página 404

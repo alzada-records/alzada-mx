@@ -22,7 +22,7 @@ const CACHE_HORAS = 3;
 // Solo estrenos de canciones: se saltan audios, lyric videos, visualizers, en vivo,
 // detrás de cámaras, teasers, entrevistas, podcasts y promos con hashtags.
 // Para quitar otro tipo, agrégalo aquí.
-const NO_ES_VIDEOCLIP = /audio|lyric|letra|visuali[sz]er|en vivo|\blive\b|behind|detr[aá]s de|making of|teaser|tr[aá]iler|entrevista|interview|podcast|reacci[oó]n|reaction|vlog|#/i;
+const NO_ES_VIDEOCLIP = /audio|lyric|letra|visuali[sz]er|en vivo|\blive\b|behind|detr[aá]s de|making of|teaser|tr[aá]iler|entrevista|interview|podcast|reacci[oó]n|reaction|vlog|dj ?set|disponible|#/i;
 
 const reproductor = document.getElementById("reproductor");
 const tituloActual = document.getElementById("video-actual");
