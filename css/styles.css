@@ -1033,3 +1033,18 @@ label {
 
 .newsletter-foto .form-mensaje[data-tipo="ok"] { color: #7bd88f; }
 .newsletter-foto .form-mensaje[data-tipo="error"] { color: #ff8a80; }
+
+/* Lanzamientos del inicio en negro */
+.videos-inicio {
+  background: var(--color-oscuro);
+  color: var(--color-oscuro-texto);
+  border-bottom-color: var(--color-oscuro-borde);
+}
+
+.videos-inicio .video-tarjeta img {
+  background: #1a1a1a;
+}
+
+.videos-inicio :focus-visible {
+  outline-color: var(--color-oscuro-texto);
+}
