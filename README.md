@@ -2,6 +2,12 @@
 
 Sitio web de Alzada (alzada.mx), HTML y CSS sin CMS. Misma base que ladrones.mx.
 
+## Dos idiomas
+
+- Español en la raíz (`/`, `/c-kan/`, `/contacto/`…) e inglés en `/en/` (`/en/`, `/en/c-kan/`, `/en/contact/`).
+- **Cada texto va en los dos idiomas**: en `generar.py` con `t("español", "inglés")`, las bios en `datos/artistas.json` (español) y `datos/bios_en.json` (inglés), y el formulario en `formulario.py` y `formulario_en.py`. Si falta la bio en inglés de un artista, el generador avisa y no arma nada.
+- `js/idioma.js`: botón ES | EN (guarda la elección) y, en la portada, manda a `/en/` si la persona eligió inglés o si su dispositivo no está en español. No redirige a buscadores.
+
 ## Cómo está armado
 
 - `datos/artistas.json`: nombre, bio y redes de cada artista. **Aquí se cambian los textos.**
@@ -17,7 +23,6 @@ Sitio web de Alzada (alzada.mx), HTML y CSS sin CMS. Misma base que ladrones.mx.
 
 ## Lista de pendientes
 
-- [ ] Versión en inglés en `/en/`
 - [ ] En Netlify > Forms > notificaciones: avisos a charliefelix@alzada.mx para booking, marcas, sync, produccion, audiovisual e instalaciones
 - [x] Redirecciones de Wix, sitemap (se arma solo con generar.py), robots y página 404
 - [ ] Netlify y dominio alzada.mx

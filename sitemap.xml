@@ -1,17 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.alzada.mx/</loc></url>
-  <url><loc>https://www.alzada.mx/contacto/</loc></url>
-  <url><loc>https://www.alzada.mx/ladrones/</loc></url>
-  <url><loc>https://www.alzada.mx/maho/</loc></url>
-  <url><loc>https://www.alzada.mx/yoss-bones/</loc></url>
-  <url><loc>https://www.alzada.mx/toser-one/</loc></url>
-  <url><loc>https://www.alzada.mx/neto-pena/</loc></url>
-  <url><loc>https://www.alzada.mx/zxmyr/</loc></url>
-  <url><loc>https://www.alzada.mx/almanegra/</loc></url>
-  <url><loc>https://www.alzada.mx/jul-diez/</loc></url>
-  <url><loc>https://www.alzada.mx/omar-chaparro/</loc></url>
-  <url><loc>https://www.alzada.mx/c-kan/</loc></url>
-  <url><loc>https://www.alzada.mx/dharius/</loc></url>
-  <url><loc>https://www.alzada.mx/keysiesm/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.alzada.mx/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/contacto/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/contacto/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/contacto/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/ladrones/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/ladrones/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/ladrones/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/ladrones/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/ladrones/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/ladrones/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/ladrones/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/ladrones/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/maho/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/maho/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/maho/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/maho/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/maho/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/maho/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/maho/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/maho/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/yoss-bones/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/yoss-bones/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/yoss-bones/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/yoss-bones/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/yoss-bones/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/yoss-bones/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/yoss-bones/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/yoss-bones/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/toser-one/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/toser-one/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/toser-one/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/toser-one/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/toser-one/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/toser-one/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/toser-one/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/toser-one/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/neto-pena/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/neto-pena/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/neto-pena/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/neto-pena/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/neto-pena/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/neto-pena/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/neto-pena/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/neto-pena/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/zxmyr/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/zxmyr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/zxmyr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/zxmyr/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/zxmyr/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/zxmyr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/zxmyr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/zxmyr/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/almanegra/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/almanegra/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/almanegra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/almanegra/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/almanegra/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/almanegra/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/almanegra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/almanegra/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/jul-diez/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/jul-diez/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/jul-diez/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/jul-diez/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/jul-diez/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/jul-diez/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/jul-diez/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/jul-diez/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/omar-chaparro/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/omar-chaparro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/omar-chaparro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/omar-chaparro/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/omar-chaparro/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/omar-chaparro/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/omar-chaparro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/omar-chaparro/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/c-kan/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/c-kan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/c-kan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/c-kan/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/c-kan/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/c-kan/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/c-kan/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/c-kan/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/dharius/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/dharius/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/dharius/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/dharius/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/dharius/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/dharius/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/dharius/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/dharius/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/keysiesm/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/keysiesm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/keysiesm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/keysiesm/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/keysiesm/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/keysiesm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/keysiesm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/keysiesm/"/>
+  </url>
 </urlset>

@@ -1128,3 +1128,25 @@ label {
 @media (prefers-reduced-motion: reduce) {
   .hero-diapo { transition: none; }
 }
+
+/* ---------- Botón de idioma (ES | EN) ---------- */
+.menu .idioma a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--color-oscuro-borde);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.menu .idioma a:hover,
+.menu .idioma a:focus-visible {
+  border-color: var(--color-oscuro-texto);
+}
+
+@media (min-width: 768px) {
+  .menu { align-items: center; }
+}

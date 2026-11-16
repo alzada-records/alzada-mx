@@ -12,3 +12,6 @@ https://alzada.mx/*  https://www.alzada.mx/:splat  301!
 /event-details/*   /           301
 /profile/*         /           301
 /members/*         /           301
+
+# Página de error en inglés
+/en/*  /en/404.html  404
