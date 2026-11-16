@@ -15,6 +15,8 @@ import sys
 from urllib.parse import quote
 from html import escape
 
+from PIL import Image
+
 from formulario import TIPOS, PAISES
 
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
@@ -346,6 +348,8 @@ def pagina_artista(a):
       </div>
     </section>
 """
+    with Image.open(RAIZ / f"img/artistas/{a['slug']}-grande.webp") as foto:
+        ancho, alto = foto.size
     videos = ""
     canal = a.get("canal_youtube")
     if canal:
@@ -369,7 +373,7 @@ def pagina_artista(a):
     html += f"""
     <section class="seccion portada artista">
       <div class="contenedor artista-grid">
-        <img class="artista-foto" src="/img/artistas/{a['slug']}-grande.webp" alt="{escape(nombre)}" fetchpriority="high">
+        <img class="artista-foto" src="/img/artistas/{a['slug']}-grande.webp" alt="{escape(nombre)}" width="{ancho}" height="{alto}" fetchpriority="high">
         <div class="artista-texto">
           <p class="seccion-intro"><a href="/#roster">Roster</a></p>
           <h1 translate="no">{escape(nombre)}</h1>
