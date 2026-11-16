@@ -780,5 +780,72 @@ label {
 }
 
 .videos-inicio {
-  padding-block: 2rem 3rem;
+  padding-block: 3rem;
+}
+
+/* ---------- Lanzamiento destacado del inicio (igual al de ladrones.mx) ---------- */
+.hero-foto {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: clamp(420px, 70vh, 720px);
+  background-color: var(--color-oscuro);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--color-oscuro-texto);
+  border-bottom: 0;
+}
+
+.hero-foto .seccion-intro {
+  color: var(--color-oscuro-texto);
+}
+
+.hero-foto .boton-secundario {
+  border-color: var(--color-oscuro-texto);
+  color: var(--color-oscuro-texto);
+}
+
+.hero-foto .boton-secundario:hover {
+  background: var(--color-oscuro-texto);
+  color: var(--color-oscuro);
+}
+
+.hero-foto :focus-visible {
+  outline-color: var(--color-oscuro-texto);
+}
+
+.hero-inicio {
+  min-height: clamp(520px, 85vh, 860px);
+  background-image:
+    linear-gradient(to top, rgb(11 11 11 / 1) 0%, rgb(11 11 11 / 0.75) 30%, rgb(11 11 11 / 0.15) 70%),
+    url("/img/fondos/musica-960.webp");
+  background-position: center 20%;
+}
+
+@media (min-width: 900px) {
+  .hero-inicio {
+    background-image:
+      linear-gradient(to top, rgb(11 11 11 / 1) 0%, rgb(11 11 11 / 0.6) 30%, rgb(11 11 11 / 0) 60%),
+      linear-gradient(to right, rgb(11 11 11 / 0.7), rgb(11 11 11 / 0) 50%),
+      url("/img/fondos/musica-1920.webp");
+  }
+}
+
+.hero-lanzamiento {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-lanzamiento img {
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  border: 1px solid rgb(255 255 255 / 0.35);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.5);
+}
+
+.hero-lanzamiento .seccion-intro {
+  margin: 0;
 }

@@ -181,16 +181,32 @@ def inicio():
     html = cabeza("Alzada Records | Disquera mexicana independiente",
                   "Alzada Records: disquera mexicana independiente. Conoce a nuestros artistas, sus lanzamientos y el merch oficial.",
                   "/", "/img/compartir.jpg",
+                  '  <link rel="preload" as="image" href="/img/fondos/musica-1920.webp" media="(min-width: 900px)" fetchpriority="high">\n'
+                  '  <link rel="preload" as="image" href="/img/fondos/musica-960.webp" media="(max-width: 899px)" fetchpriority="high">\n'
                   '  <link rel="preconnect" href="https://www.youtube.com">\n'
                   '  <link rel="preconnect" href="https://www.googleapis.com">\n'
                   '  <link rel="preconnect" href="https://alzadastreetwear.com">\n'
                   '  <script src="/js/videos.js" defer></script>\n'
                   '  <script src="/js/merch.js" defer></script>\n')
     html += f"""
+    <!-- Lanzamiento destacado (igual al de ladrones.mx). Para cambiarlo: foto de fondo en
+         css/styles.css (.hero-inicio), portada en img/lanzamientos/ y textos y links aquí. -->
+    <section class="seccion portada hero-foto hero-inicio">
+      <div class="contenedor">
+        <div class="hero-lanzamiento">
+          <img src="/img/lanzamientos/arriba-la-l.webp" alt="Portada del álbum Arriba La L" width="800" height="800">
+          <p class="seccion-intro"><span translate="no">Ladrones</span> · Nuevo álbum · 2026</p>
+        </div>
+        <h1><span translate="no">Arriba La L</span></h1>
+        <p><a class="boton" href="https://open.spotify.com/album/1XKtSl05ezH6lWTmVgTLUL" target="_blank" rel="noopener">Escuchar</a>
+           <a class="boton boton-secundario" href="https://www.ladrones.mx/lanzamientos/" target="_blank" rel="noopener">Toda la música</a></p>
+      </div>
+    </section>
+
     <!-- Videos: el más nuevo del canal de Alzada y los que siguen (js/videos.js) -->
     <section class="seccion portada videos-inicio" data-canal="UCb41Xk6cDPcz1r_xEhQqvuA" aria-labelledby="titulo-videos">
       <div class="contenedor">
-        <h1 id="titulo-videos" class="oculto">Alzada Records</h1>
+        <h2 id="titulo-videos" class="oculto">Videos de Alzada</h2>
         <iframe class="video" id="reproductor"
           src="https://www.youtube.com/embed/videoseries?list=UULFb41Xk6cDPcz1r_xEhQqvuA"
           title="Videos más recientes de Alzada"
