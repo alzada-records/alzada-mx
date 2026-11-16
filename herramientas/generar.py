@@ -79,6 +79,7 @@ def cabeza(titulo, descripcion, ruta, imagen, extra=""):
         <ul class="menu" id="menu">
           <li><a href="/"{' aria-current="page"' if ruta == "/" else ""}>Inicio</a></li>
           <li><a href="/#roster">Roster</a></li>
+          <li><a href="/#lanzamientos">Lanzamientos</a></li>
           <li><a href="/#merch">Merch</a></li>
           <li><a href="/#nosotros">Nosotros</a></li>
           <li><a href="/#sync">Sync</a></li>
@@ -224,9 +225,9 @@ def inicio():
     </section>
 
     <!-- Videos: el más nuevo del canal de Alzada y los que siguen (js/videos.js) -->
-    <section class="seccion videos-inicio" data-canal="UCb41Xk6cDPcz1r_xEhQqvuA" aria-labelledby="titulo-videos">
+    <section class="seccion videos-inicio" id="lanzamientos" data-canal="UCb41Xk6cDPcz1r_xEhQqvuA" aria-labelledby="titulo-videos">
       <div class="contenedor">
-        <h2 id="titulo-videos">Lo más nuevo</h2>
+        <h2 id="titulo-videos">Lanzamientos</h2>
         <iframe class="video" id="reproductor"
           src="https://www.youtube.com/embed/videoseries?list=UULFb41Xk6cDPcz1r_xEhQqvuA"
           title="Videos más recientes de Alzada"
