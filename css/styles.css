@@ -981,3 +981,55 @@ label {
   background: var(--color-superficie);
   border-radius: var(--radio);
 }
+
+/* ---------- Únete a la familia: foto del sinfónico de fondo, formulario a la derecha ---------- */
+.newsletter-foto {
+  background-color: var(--color-oscuro);
+  background-image:
+    linear-gradient(to bottom, rgb(11 11 11 / 0.55), rgb(11 11 11 / 0.9)),
+    url("/img/fondos/sinfonico-960.webp");
+  background-size: cover;
+  background-position: 40% center;
+  color: var(--color-oscuro-texto);
+  border-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .newsletter-foto {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    background-image:
+      linear-gradient(to right, rgb(11 11 11 / 0) 30%, rgb(11 11 11 / 0.85) 62%, rgb(11 11 11 / 0.95)),
+      url("/img/fondos/sinfonico-1920.webp");
+    background-position: 30% center;
+  }
+
+  .newsletter-foto .contenedor {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .newsletter-foto .newsletter-caja {
+    width: min(440px, 100%);
+  }
+}
+
+.newsletter-foto .seccion-intro,
+.newsletter-foto label {
+  color: var(--color-oscuro-suave);
+}
+
+.newsletter-foto input[type="text"],
+.newsletter-foto input[type="email"] {
+  background: rgb(255 255 255 / 0.08);
+  border-color: rgb(255 255 255 / 0.25);
+  color: var(--color-oscuro-texto);
+}
+
+.newsletter-foto :focus-visible {
+  outline-color: var(--color-oscuro-texto);
+}
+
+.newsletter-foto .form-mensaje[data-tipo="ok"] { color: #7bd88f; }
+.newsletter-foto .form-mensaje[data-tipo="error"] { color: #ff8a80; }

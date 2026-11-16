@@ -127,7 +127,7 @@ def barra_redes(redes, nombre):
 def newsletter():
     return f"""
     <!-- Newsletter: Mailchimp (misma audiencia que Ladrones) -->
-    <section class="seccion newsletter" aria-labelledby="titulo-newsletter">
+    <section class="seccion newsletter newsletter-foto" aria-labelledby="titulo-newsletter">
       <div class="contenedor">
         <div class="newsletter-caja">
         <h2 id="titulo-newsletter">Únete a la familia</h2>
