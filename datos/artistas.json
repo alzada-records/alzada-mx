@@ -14,7 +14,8 @@
       "spotify": "https://open.spotify.com/artist/5KGNQQzk32VSQv9If4X7A6",
       "apple": "https://music.apple.com/mx/artist/ladrones/1617367440"
     },
-    "sitio": "https://www.ladrones.mx"
+    "sitio": "https://www.ladrones.mx",
+    "canal_youtube": "UCOFdvkFfaGgpkP9DawxAvZw"
   },
   {
     "slug": "maho",
@@ -23,7 +24,9 @@
       "MAHO es un dúo mexicano de música electrónica en formato live, integrado por Gabriel Montaño y María José Garza. Originarios de Guadalajara, México, el proyecto explora el house y distintos géneros de la electrónica, dando identidad a sus producciones a través de vocales en español. El proyecto ha recibido apoyo de artistas como Musumeci, Alican, Jimi Jules, Âme y Dixon.",
       "En su año debut, 2024, MAHO se posicionó en el Top 100 de Beatport con el EP “Sabes Que Sí”, lanzado vía Roam Recordings. En 2025, cerraron una colaboración junto a Musumeci con el lanzamiento del EP “Me Sientes” vía Anims (Barcelona), acompañado por un remix de Pole Position."
     ],
-    "redes": {}
+    "redes": {
+      "spotify": "https://open.spotify.com/artist/3y7qVJgIY82aFdEKW1j2IS"
+    }
   },
   {
     "slug": "yoss-bones",
@@ -39,7 +42,8 @@
       "facebook": "https://www.facebook.com/YossBonesOfficial/",
       "spotify": "https://open.spotify.com/artist/0SmgVe3giVHaJjGmIz8xA4",
       "apple": "https://music.apple.com/mx/artist/yoss-bones/1383563581"
-    }
+    },
+    "canal_youtube": "UCeQMZ68wcb97NCCKiI2KxnQ"
   },
   {
     "slug": "toser-one",
@@ -55,7 +59,8 @@
       "facebook": "https://www.facebook.com/ToserOneOficial/",
       "spotify": "https://open.spotify.com/artist/1oHPSeQJBwNmpq0J52Wjn1",
       "apple": "https://music.apple.com/mx/artist/toser-one/1132804111"
-    }
+    },
+    "canal_youtube": "UCQf542MPMWUWq6l65rsV_Kw"
   },
   {
     "slug": "neto-pena",
@@ -71,7 +76,8 @@
       "facebook": "https://www.facebook.com/elnetoalzada/",
       "spotify": "https://open.spotify.com/artist/0U5RYP2HMdGv2GhicLhkOI",
       "apple": "https://music.apple.com/mx/artist/neto-pe%C3%B1a/1129504547"
-    }
+    },
+    "canal_youtube": "UCrq2ArYU6XzMg_uAVPHCE3Q"
   },
   {
     "slug": "zxmyr",
@@ -87,7 +93,8 @@
       "facebook": "https://www.facebook.com/zxmyr.oficial/",
       "spotify": "https://open.spotify.com/artist/7IUaYyqcGB3aU2Tm4s5JY8",
       "apple": "https://music.apple.com/mx/artist/zxmyr/1421405962"
-    }
+    },
+    "canal_youtube": "UCZ4NWZseJmo7QXlZKkib_iA"
   },
   {
     "slug": "almanegra",
@@ -102,7 +109,8 @@
       "facebook": "https://www.facebook.com/Almanegra.Col/",
       "spotify": "https://open.spotify.com/artist/3IrTSci2J1v5SbMp75mX6j",
       "apple": "https://music.apple.com/mx/artist/almanegra/1489386716"
-    }
+    },
+    "canal_youtube": "UCJe3Sd1hlwsiSm427ygfzMw"
   },
   {
     "slug": "jul-diez",
@@ -117,7 +125,8 @@
       "facebook": "https://www.facebook.com/juldiez.alzada/",
       "spotify": "https://open.spotify.com/artist/1Yu84HbHhGHeS7aorDMqA5",
       "apple": "https://music.apple.com/mx/artist/jul-diez/1732707240"
-    }
+    },
+    "canal_youtube": "UC12BlXiswS4MPNkQgwjKAow"
   },
   {
     "slug": "omar-chaparro",
@@ -132,7 +141,8 @@
       "facebook": "https://www.facebook.com/SoyOmarChaparro/",
       "spotify": "https://open.spotify.com/artist/4c2iIMx6xBNZkK79QTilJ6",
       "apple": "https://music.apple.com/mx/artist/omar-chaparro/1125001863"
-    }
+    },
+    "canal_youtube": "UCtC4Yy6bZBsbbqiFN-uBwuQ"
   },
   {
     "slug": "c-kan",
@@ -147,7 +157,8 @@
       "facebook": "https://www.facebook.com/CKanMEX/",
       "spotify": "https://open.spotify.com/artist/1QhaqxeqF9sipS2gwbEKpu",
       "apple": "https://music.apple.com/mx/artist/c-kan/305830705"
-    }
+    },
+    "canal_youtube": "UCkD89TEFWsTZluY6tk84yqg"
   },
   {
     "slug": "dharius",
@@ -162,7 +173,8 @@
       "facebook": "https://www.facebook.com/Dhariuseloriginal/",
       "spotify": "https://open.spotify.com/artist/66RfYVdftqnuHRicyClgL0",
       "apple": "https://music.apple.com/mx/artist/dharius/546602103"
-    }
+    },
+    "canal_youtube": "UCRWeaLWbhoHuHNjxLgG4asQ"
   },
   {
     "slug": "keysiesm",
@@ -180,6 +192,7 @@
       "facebook": "https://www.facebook.com/profile.php?id=61578396853235",
       "spotify": "https://open.spotify.com/artist/2J6qV9exb9dzavoM5aEDZf",
       "apple": "https://music.apple.com/mx/artist/keysie-sm/1811042621"
-    }
+    },
+    "canal_youtube": "UCY0WTkxT6ARtnfaK8hB5o5A"
   }
 ]

@@ -1,23 +1,28 @@
-// Encabezado del inicio: el video más nuevo del canal de Alzada y, abajo, los que siguen.
+// Reproductor con el video más nuevo de un canal de YouTube y, abajo, los que siguen.
+// Se usa en el inicio (canal de Alzada) y en la página de cada artista (su canal).
+// El canal sale del atributo data-canal de la sección; el HTML lo pone el generador.
 // Usa la YouTube Data API. Si falla, se queda el reproductor de respaldo con la lista de subidas.
 
 // Clave de Google Cloud (proyecto ladrones-web), restringida a alzada.mx y ladrones.mx.
 const API_KEY = "AIzaSyAg_coKJfSwQj63NRfZtm59-AagOwJZnmg";
 
-// Canal de Alzada: UCb41Xk6cDPcz1r_xEhQqvuA.
-// "UULF" + el resto del ID = videos largos, sin Shorts. "UU" + el resto = todo lo subido.
-const LISTA_SIN_SHORTS = "UULFb41Xk6cDPcz1r_xEhQqvuA";
-const LISTA_TODO = "UUb41Xk6cDPcz1r_xEhQqvuA";
+const seccionVideos = document.querySelector("[data-canal]");
+const CANAL = seccionVideos ? seccionVideos.dataset.canal : "";
+// "UULF" + el ID sin "UC" = videos largos, sin Shorts. "UU" + el ID sin "UC" = todo lo subido.
+const LISTA_SIN_SHORTS = "UULF" + CANAL.slice(2);
+const LISTA_TODO = "UU" + CANAL.slice(2);
 
 // Cuántos videos se pueden elegir abajo del reproductor (contando el principal).
 const CUANTOS = 9;
 
 // Se guardan 3 horas en el navegador del visitante para no gastar cuota de más.
-const CACHE_CLAVE = "alzada-videos-v1";
+const CACHE_CLAVE = "alzada-videos-v2-" + CANAL;
 const CACHE_HORAS = 3;
 
-// Se saltan audios, lyric videos y promos con hashtags. Para quitar otro tipo, agrégalo aquí.
-const NO_ES_VIDEOCLIP = /audio|lyric|visualizer|#/i;
+// Solo estrenos de canciones: se saltan audios, lyric videos, visualizers, en vivo,
+// detrás de cámaras, teasers, entrevistas, podcasts y promos con hashtags.
+// Para quitar otro tipo, agrégalo aquí.
+const NO_ES_VIDEOCLIP = /audio|lyric|letra|visuali[sz]er|en vivo|\blive\b|behind|detr[aá]s de|making of|teaser|tr[aá]iler|entrevista|interview|podcast|reacci[oó]n|reaction|vlog|#/i;
 
 const reproductor = document.getElementById("reproductor");
 const tituloActual = document.getElementById("video-actual");
@@ -96,6 +101,7 @@ function pintar(videos) {
 }
 
 async function iniciar() {
+  if (!CANAL || !listaVideos) return;
   let videos = leerCache();
   if (!videos) {
     try {

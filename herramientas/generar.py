@@ -188,7 +188,7 @@ def inicio():
                   '  <script src="/js/merch.js" defer></script>\n')
     html += f"""
     <!-- Videos: el más nuevo del canal de Alzada y los que siguen (js/videos.js) -->
-    <section class="seccion portada videos-inicio" aria-labelledby="titulo-videos">
+    <section class="seccion portada videos-inicio" data-canal="UCb41Xk6cDPcz1r_xEhQqvuA" aria-labelledby="titulo-videos">
       <div class="contenedor">
         <h1 id="titulo-videos" class="oculto">Alzada Records</h1>
         <iframe class="video" id="reproductor"
@@ -235,7 +235,8 @@ def pagina_artista(a):
     resumen = a["bio"][0].split(". ")[0] + "."
     spotify = a["redes"].get("spotify", "")
     html = cabeza(f"{nombre} | Alzada Records", resumen, f"/{a['slug']}/",
-                  f"/img/artistas/{a['slug']}-800.webp")
+                  f"/img/artistas/{a['slug']}-800.webp",
+                  '  <script src="/js/videos.js" defer></script>\n' if a.get("canal_youtube") else "")
     parrafos = "\n".join(f"          <p>{escape(p)}</p>" for p in a["bio"])
     sitio = ""
     if a.get("sitio"):
@@ -251,6 +252,26 @@ def pagina_artista(a):
       </div>
     </section>
 """
+    videos = ""
+    canal = a.get("canal_youtube")
+    if canal:
+        videos = f"""
+    <!-- Videos: el estreno más nuevo de su canal y los que siguen (js/videos.js) -->
+    <section class="seccion" data-canal="{canal}" aria-labelledby="titulo-videos">
+      <div class="contenedor">
+        <h2 id="titulo-videos">Videos</h2>
+        <iframe class="video" id="reproductor"
+          src="https://www.youtube.com/embed/videoseries?list=UULF{canal[2:]}"
+          title="Videos de {escape(nombre)}"
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+        <p class="video-actual" id="video-actual" aria-live="polite"></p>
+        <ul class="videos-lista" id="videos-lista" aria-label="Más videos de {escape(nombre)}"></ul>
+      </div>
+    </section>
+"""
     html += f"""
     <section class="seccion portada artista">
       <div class="contenedor artista-grid">
@@ -262,7 +283,7 @@ def pagina_artista(a):
         </div>
       </div>
     </section>
-{barra_redes(a["redes"], nombre)}{musica}
+{barra_redes(a["redes"], nombre)}{musica}{videos}
     <!-- Fechas: Bandsintown (se actualizan solas) -->
     <section class="seccion fechas" aria-labelledby="titulo-fechas">
       <div class="contenedor">
