@@ -145,6 +145,7 @@ def cabeza(titulo, descripcion, rutas, imagen, extra="", actual=""):
   <meta property="og:title" content="{escape(titulo)}">
   <meta property="og:description" content="{escape(descripcion)}">
   <meta property="og:image" content="{DOMINIO}{imagen}">
+  <meta property="og:image:alt" content="{escape(titulo)}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Alzada">
   <meta property="og:locale" content="{t("es_MX", "en_US")}">
