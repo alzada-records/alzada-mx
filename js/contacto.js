@@ -5,7 +5,7 @@
 // del Drive personal de Lorenzo (ver herramientas/apps-script-talento.gs) y no avisa a nadie.
 
 // URL de la aplicación web de Apps Script de la hoja "Alzada – Envíos de talento".
-const TALENTO_URL = "";
+const TALENTO_URL = "https://script.google.com/macros/s/AKfycbzJysmieOQpNjOfEHKlE8DDbaUZ8oqQT-lryZgElxL2Nhw0Fs1N8yVPG2eNvp4VKt1A/exec";
 
 const form = document.getElementById("form-contacto");
 
