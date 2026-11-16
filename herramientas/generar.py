@@ -75,6 +75,7 @@ def cabeza(titulo, descripcion, ruta, imagen, extra=""):
           <li><a href="/#roster">Roster</a></li>
           <li><a href="/#merch">Merch</a></li>
           <li><a href="/#nosotros">Nosotros</a></li>
+          <li><a href="/#sync">Sync</a></li>
         </ul>
       </nav>
     </div>
@@ -253,6 +254,17 @@ def inicio():
           <p>Desde etapas tempranas ha apostado por artistas que hoy son referentes de la escena urbana en México y Latinoamérica. Con producción audiovisual, contenido digital, colaboraciones con marcas y experiencias en vivo, <span translate="no">Alzada</span> es más que un sello: una plataforma 360 que sigue rompiendo esquemas y elevando el estándar de la música en Latinoamérica.</p>
         </div>
         <img src="/img/nosotros-800.webp" srcset="/img/nosotros-800.webp 800w, /img/nosotros-1400.webp 1400w" sizes="(min-width: 900px) 540px, 100vw" alt="Artistas de Alzada con sus discos de certificación" width="1400" height="933" loading="lazy">
+      </div>
+    </section>
+    <!-- Sync / Licensing -->
+    <section class="seccion nosotros sync" id="sync" aria-labelledby="titulo-sync">
+      <div class="contenedor nosotros-grid">
+        <img src="/img/sync-800.webp" srcset="/img/sync-800.webp 800w, /img/sync-1400.webp 1400w" sizes="(min-width: 900px) 540px, 100vw" alt="Recepción de las oficinas de Alzada con discos de certificación en las paredes" width="1400" height="933" loading="lazy">
+        <div>
+          <h2 id="titulo-sync">Sync / Licensing</h2>
+          <p>En <span translate="no">Alzada</span>, la sincronización y el licensing convierten la música en un activo estratégico. Nuestro catálogo reúne propuestas auténticas y versátiles, listas para integrarse en películas, series, campañas, videojuegos y contenido digital, aportando identidad, emoción y valor a cada proyecto.</p>
+          <p>Trabajamos de forma ágil y curatorial, facilitando la gestión de derechos, autorizaciones y entregables para acelerar procesos sin fricción. Desde la selección del track ideal hasta el cierre de la licencia, alineamos creatividad con objetivos comerciales, ayudando a marcas, agencias y productoras a conectar con nuevas audiencias a través de la música.</p>
+        </div>
       </div>
     </section>
 {newsletter()}{pie()}"""
