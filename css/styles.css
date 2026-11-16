@@ -965,12 +965,12 @@ label {
   border-radius: var(--radio);
 }
 
-/* ---------- Únete a la familia: foto del sinfónico de fondo, formulario a la derecha ---------- */
+/* ---------- Únete a la familia: foto del Urbano de fondo, formulario a la derecha ---------- */
 .newsletter-foto {
   background-color: var(--color-oscuro);
   background-image:
     linear-gradient(to bottom, rgb(11 11 11 / 0.55), rgb(11 11 11 / 0.9)),
-    url("/img/fondos/sinfonico-960.webp");
+    url("/img/fondos/urbano-960.webp");
   background-size: cover;
   background-position: 40% center;
   color: var(--color-oscuro-texto);
@@ -984,7 +984,7 @@ label {
     align-items: center;
     background-image:
       linear-gradient(to right, rgb(11 11 11 / 0) 30%, rgb(11 11 11 / 0.85) 62%, rgb(11 11 11 / 0.95)),
-      url("/img/fondos/sinfonico-1920.webp");
+      url("/img/fondos/urbano-1920.webp");
     background-position: 30% center;
   }
 
