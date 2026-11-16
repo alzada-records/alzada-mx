@@ -3,7 +3,7 @@
 Uso (desde la carpeta del sitio):  python3 herramientas/generar.py
 
 Genera:
-  index.html            inicio (lanzamientos, redes, roster, merch, formulario)
+  index.html            inicio (videos, redes, roster, merch, formulario)
   <artista>/index.html  una página por artista (misma dirección que en Wix)
 
 Para cambiar un texto o un link de un artista, edita datos/artistas.json y
@@ -47,6 +47,7 @@ def cabeza(titulo, descripcion, ruta, imagen, extra=""):
   <title>{escape(titulo)}</title>
   <meta name="description" content="{escape(descripcion)}">
   <meta name="theme-color" content="#0b0b0b">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <meta property="og:title" content="{escape(titulo)}">
   <meta property="og:description" content="{escape(descripcion)}">
   <meta property="og:image" content="{DOMINIO}{imagen}">
@@ -66,7 +67,7 @@ def cabeza(titulo, descripcion, ruta, imagen, extra=""):
 
   <header class="encabezado">
     <div class="contenedor">
-      <a class="logo logo-texto" href="/" translate="no">Alzada</a>
+      <a class="logo" href="/"><img src="/img/logo.webp" alt="Alzada" width="88" height="96"></a>
       <nav aria-label="Principal">
         <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
         <ul class="menu" id="menu">
@@ -179,17 +180,25 @@ def roster():
 def inicio():
     html = cabeza("Alzada Records | Disquera mexicana independiente",
                   "Alzada Records: disquera mexicana independiente. Conoce a nuestros artistas, sus lanzamientos y el merch oficial.",
-                  "/", "/img/artistas/ladrones-800.webp",
-                  '  <link rel="preconnect" href="https://open.spotify.com">\n'
+                  "/", "/img/compartir.jpg",
+                  '  <link rel="preconnect" href="https://www.youtube.com">\n'
+                  '  <link rel="preconnect" href="https://www.googleapis.com">\n'
                   '  <link rel="preconnect" href="https://alzadastreetwear.com">\n'
-                  '  <script src="/js/lanzamientos.js" defer></script>\n'
+                  '  <script src="/js/videos.js" defer></script>\n'
                   '  <script src="/js/merch.js" defer></script>\n')
     html += f"""
-    <!-- Lanzamientos más nuevos: se cambian en js/lanzamientos.js -->
-    <section class="seccion portada lanzamientos" aria-labelledby="titulo-lanzamientos">
+    <!-- Videos: el más nuevo del canal de Alzada y los que siguen (js/videos.js) -->
+    <section class="seccion portada videos-inicio" aria-labelledby="titulo-videos">
       <div class="contenedor">
-        <h1 id="titulo-lanzamientos">Lo más nuevo de <span translate="no">Alzada</span></h1>
-        <ul class="lanzamientos-lista" id="lanzamientos-lista"></ul>
+        <h1 id="titulo-videos" class="oculto">Alzada Records</h1>
+        <iframe class="video" id="reproductor"
+          src="https://www.youtube.com/embed/videoseries?list=UULFb41Xk6cDPcz1r_xEhQqvuA"
+          title="Videos más recientes de Alzada"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+        <p class="video-actual" id="video-actual" aria-live="polite"></p>
+        <ul class="videos-lista" id="videos-lista" aria-label="Más videos"></ul>
       </div>
     </section>
 {barra_redes(REDES_ALZADA, "Alzada")}
@@ -267,11 +276,11 @@ def pagina_artista(a):
           data-display-local-dates="false"
           data-display-past-dates="false"
           data-font="Helvetica"
-          data-text-color="#f2f2f2"
-          data-link-color="#f2f2f2"
+          data-text-color="#111111"
+          data-link-color="#111111"
           data-background-color="rgba(0,0,0,0)"
-          data-popup-background-color="#161616"
-          data-separator-color="#2a2a2a"
+          data-popup-background-color="#ffffff"
+          data-separator-color="#e2e2e2"
           data-widget-width="100%"
           data-auto-style="false"></a>
       </div>

@@ -1,0 +1,119 @@
+// Encabezado del inicio: el video más nuevo del canal de Alzada y, abajo, los que siguen.
+// Usa la YouTube Data API. Si falla, se queda el reproductor de respaldo con la lista de subidas.
+
+// Clave de Google Cloud (proyecto ladrones-web), restringida a alzada.mx y ladrones.mx.
+const API_KEY = "AIzaSyAg_coKJfSwQj63NRfZtm59-AagOwJZnmg";
+
+// Canal de Alzada: UCb41Xk6cDPcz1r_xEhQqvuA.
+// "UULF" + el resto del ID = videos largos, sin Shorts. "UU" + el resto = todo lo subido.
+const LISTA_SIN_SHORTS = "UULFb41Xk6cDPcz1r_xEhQqvuA";
+const LISTA_TODO = "UUb41Xk6cDPcz1r_xEhQqvuA";
+
+// Cuántos videos se pueden elegir abajo del reproductor (contando el principal).
+const CUANTOS = 9;
+
+// Se guardan 3 horas en el navegador del visitante para no gastar cuota de más.
+const CACHE_CLAVE = "alzada-videos-v1";
+const CACHE_HORAS = 3;
+
+// Se saltan audios, lyric videos y promos con hashtags. Para quitar otro tipo, agrégalo aquí.
+const NO_ES_VIDEOCLIP = /audio|lyric|visualizer|#/i;
+
+const reproductor = document.getElementById("reproductor");
+const tituloActual = document.getElementById("video-actual");
+const listaVideos = document.getElementById("videos-lista");
+const VIDEOS_EN = document.documentElement.lang === "en";
+
+function leerCache() {
+  try {
+    const datos = JSON.parse(localStorage.getItem(CACHE_CLAVE));
+    if (datos && Date.now() - datos.guardado < CACHE_HORAS * 3600 * 1000) return datos.videos;
+  } catch (e) { /* sin almacenamiento disponible: se ignora */ }
+  return null;
+}
+
+function guardarCache(videos) {
+  try {
+    localStorage.setItem(CACHE_CLAVE, JSON.stringify({ guardado: Date.now(), videos }));
+  } catch (e) { /* sin almacenamiento disponible: se ignora */ }
+}
+
+async function traerLista(playlist) {
+  const url = new URL("https://www.googleapis.com/youtube/v3/playlistItems");
+  url.search = new URLSearchParams({ part: "snippet,contentDetails", maxResults: "50", playlistId: playlist, key: API_KEY });
+  const respuesta = await fetch(url);
+  if (!respuesta.ok) throw new Error("YouTube respondió " + respuesta.status);
+  const datos = await respuesta.json();
+  const videos = [];
+  for (const item of datos.items || []) {
+    const s = item.snippet;
+    if (s.title === "Private video" || s.title === "Deleted video") continue;
+    if (NO_ES_VIDEOCLIP.test(s.title)) continue;
+    const m = s.thumbnails || {};
+    videos.push({
+      id: item.contentDetails.videoId,
+      titulo: s.title,
+      fecha: item.contentDetails.videoPublishedAt || s.publishedAt,
+      imagen: (m.medium || m.high || m.default || {}).url,
+    });
+  }
+  return videos;
+}
+
+function reproducir(video, iniciar) {
+  reproductor.src = `https://www.youtube.com/embed/${video.id}?rel=0${iniciar ? "&autoplay=1" : ""}`;
+  reproductor.title = video.titulo;
+  tituloActual.textContent = video.titulo;
+  listaVideos.querySelectorAll("[aria-current]").forEach((b) => b.removeAttribute("aria-current"));
+  const boton = listaVideos.querySelector(`[data-id="${video.id}"]`);
+  if (boton) boton.setAttribute("aria-current", "true");
+}
+
+function pintar(videos) {
+  listaVideos.innerHTML = "";
+  for (const video of videos) {
+    const li = document.createElement("li");
+    li.className = "video-tarjeta";
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.dataset.id = video.id;
+    boton.setAttribute("aria-label", (VIDEOS_EN ? "Play " : "Ver ") + video.titulo);
+    const img = document.createElement("img");
+    img.src = video.imagen;
+    img.alt = "";
+    img.width = 320;
+    img.height = 180;
+    img.loading = "lazy";
+    const titulo = document.createElement("span");
+    titulo.className = "video-titulo";
+    titulo.translate = false;
+    titulo.textContent = video.titulo;
+    boton.append(img, titulo);
+    boton.addEventListener("click", () => reproducir(video, true));
+    li.append(boton);
+    listaVideos.append(li);
+  }
+}
+
+async function iniciar() {
+  let videos = leerCache();
+  if (!videos) {
+    try {
+      videos = await traerLista(LISTA_SIN_SHORTS);
+    } catch (e) {
+      try {
+        videos = await traerLista(LISTA_TODO);
+      } catch (e2) {
+        return; // la API falló: se queda el reproductor de respaldo
+      }
+    }
+    videos.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    videos = videos.slice(0, CUANTOS);
+    guardarCache(videos);
+  }
+  if (!videos.length) return;
+  pintar(videos);
+  reproducir(videos[0], false);
+}
+
+iniciar();
