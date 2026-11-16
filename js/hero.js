@@ -1,6 +1,6 @@
 // Encabezado del inicio: rota los lanzamientos destacados cada 10 segundos.
-// Se pausa con el mouse encima, al enfocar con teclado, con el botón de pausa
-// y si la persona tiene activado "reducir movimiento" en su dispositivo.
+// Se pausa con el botón de pausa y mientras alguien navega dentro con el teclado.
+// Con "reducir movimiento" activado sigue rotando, pero sin la animación de fundido (ver CSS).
 
 const carrusel = document.querySelector(".hero-carrusel");
 
@@ -14,7 +14,7 @@ if (carrusel) {
 
   let actual = 0;
   let reloj = null;
-  let pausadoPorUsuario = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let pausadoPorUsuario = false;
 
   function mostrar(n) {
     actual = (n + diapos.length) % diapos.length;
@@ -49,8 +49,6 @@ if (carrusel) {
     arrancar();
   });
 
-  carrusel.addEventListener("mouseenter", detener);
-  carrusel.addEventListener("mouseleave", arrancar);
   carrusel.addEventListener("focusin", detener);
   carrusel.addEventListener("focusout", (e) => { if (!carrusel.contains(e.relatedTarget)) arrancar(); });
 
