@@ -895,75 +895,89 @@ label {
   outline-color: var(--color-oscuro-texto);
 }
 
-/* ---------- Contacto (mismo diseño que ladrones.mx, en claro) ---------- */
-.contactos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 0.75rem;
-  margin: 2rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.contactos li {
-  padding: 1.5rem;
-  background: var(--color-superficie);
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
-}
-
-.contactos h2 {
-  margin: 0 0 1rem;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  color: var(--color-acento);
-}
-
-.contactos p {
-  margin: 0.25rem 0 0;
-  color: var(--color-texto-suave);
-}
-
-.contactos .contacto-nombre {
-  font-family: var(--fuente-titulos);
-  text-transform: uppercase;
-  font-size: 1.15rem;
-  color: var(--color-texto);
-}
-
-.contactos .contacto-nombre span {
-  font-family: var(--fuente-texto);
-  text-transform: none;
-  font-size: 0.9rem;
-  color: var(--color-texto-suave);
-}
-
-.contactos a {
-  color: var(--color-texto);
-  text-decoration: underline;
-  text-decoration-color: var(--color-acento);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.25em;
-  transition: color 0.15s;
-}
-
-.contactos a:hover,
-.contactos a:focus-visible {
-  color: var(--color-acento);
-}
-
-
-
-.contactos li {
-  scroll-margin-top: 110px;
-}
-
-.contactos li:target {
-  border-color: var(--color-acento);
-}
-
 .artista-botones {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+/* ---------- Formulario de Contacto ---------- */
+.contacto-grid {
+  display: grid;
+  gap: calc(var(--espacio) * 2);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .contacto-grid { grid-template-columns: 1fr 1.4fr; }
+}
+
+.form-contacto {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-contacto fieldset {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.25rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+}
+
+.form-contacto fieldset[hidden] {
+  display: none;
+}
+
+.form-contacto legend {
+  padding: 0 0.5rem;
+  font-weight: 700;
+}
+
+.form-contacto label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+.form-contacto input,
+.form-contacto select,
+.form-contacto textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  color: var(--color-texto);
+  font: inherit;
+}
+
+.form-contacto textarea {
+  resize: vertical;
+}
+
+.form-contacto input:focus-visible,
+.form-contacto select:focus-visible,
+.form-contacto textarea:focus-visible {
+  outline: 2px solid var(--color-texto);
+  outline-offset: 1px;
+}
+
+.telefono {
+  display: grid;
+  grid-template-columns: minmax(0, 11rem) 1fr;
+  gap: 0.5rem;
+}
+
+.form-contacto .boton {
+  justify-self: start;
+}
+
+.contacto-gracias {
+  padding: 2rem;
+  background: var(--color-superficie);
+  border-radius: var(--radio);
 }

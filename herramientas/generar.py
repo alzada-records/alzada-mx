@@ -11,9 +11,14 @@ vuelve a correr este script. El orden del roster es el orden del archivo.
 """
 import json
 import pathlib
+import sys
+from urllib.parse import quote
 from html import escape
 
+from formulario import TIPOS, PAISES
+
 RAIZ = pathlib.Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ / "herramientas"))
 DOMINIO = "https://www.alzada.mx"
 ARTISTAS = json.loads((RAIZ / "datos/artistas.json").read_text(encoding="utf-8"))
 
@@ -35,12 +40,6 @@ REDES_ALZADA = {
 }
 TIENDA = "https://alzadastreetwear.com/collections/merch-alzada"
 
-# Tarjetas de la página de Contacto. "correo" vacío = pendiente (la tarjeta dice "Próximamente").
-CONTACTOS = [
-    {"id": "contrataciones", "titulo": "Contrataciones", "texto": "Shows, festivales y eventos privados con artistas de Alzada.", "correo": ""},
-    {"id": "sync", "titulo": "Sync / Licensing", "texto": "Música de nuestro catálogo para cine, series, campañas, videojuegos y contenido digital.", "correo": ""},
-    {"id": "general", "titulo": "Marcas y prensa", "texto": "Colaboraciones con marcas, entrevistas y todo lo demás.", "correo": ""},
-]
 MAILCHIMP = "https://alzada.us19.list-manage.com/subscribe/post?u=32d94c0e4051438d818e68013&amp;id=4bd0645e6c&amp;f_id=00b59be3f0"
 TRAMPA = "b_32d94c0e4051438d818e68013_4bd0645e6c"
 
@@ -272,7 +271,7 @@ def inicio():
           <h2 id="titulo-sync">Sync / Licensing</h2>
           <p>En <span translate="no">Alzada</span>, la sincronización y el licensing convierten la música en un activo estratégico. Nuestro catálogo reúne propuestas auténticas y versátiles, listas para integrarse en películas, series, campañas, videojuegos y contenido digital, aportando identidad, emoción y valor a cada proyecto.</p>
           <p>Trabajamos de forma ágil y curatorial, facilitando la gestión de derechos, autorizaciones y entregables para acelerar procesos sin fricción. Desde la selección del track ideal hasta el cierre de la licencia, alineamos creatividad con objetivos comerciales, ayudando a marcas, agencias y productoras a conectar con nuevas audiencias a través de la música.</p>
-          <p><a class="boton" href="/contacto/#sync">Contactar</a></p>
+          <p><a class="boton" href="/contacto/?tipo=sync#formulario">Contactar</a></p>
         </div>
       </div>
     </section>
@@ -288,7 +287,7 @@ def pagina_artista(a):
                   f"/img/artistas/{a['slug']}-800.webp",
                   '  <script src="/js/videos.js" defer></script>\n' if a.get("canal_youtube") else "")
     parrafos = "\n".join(f"          <p>{escape(p)}</p>" for p in a["bio"])
-    sitio = '\n          <p class="artista-botones"><a class="boton" href="/contacto/#contrataciones">Contrataciones</a>'
+    sitio = '\n          <p class="artista-botones"><a class="boton" href="/contacto/?tipo=booking&amp;artista=' + quote(a["nombre"]) + '#formulario">Contrataciones</a>'
     if a.get("sitio"):
         sitio += f'\n             <a class="boton boton-secundario" href="{a["sitio"]}" target="_blank" rel="noopener">Sitio oficial</a>'
     sitio += '</p>'
@@ -363,32 +362,96 @@ def pagina_artista(a):
     (carpeta / "index.html").write_text(html, encoding="utf-8")
 
 
+def campo_extra(name, etiqueta, tipo, opciones, tipo_id):
+    ide = f"{tipo_id}-{name}"
+    if tipo == "select":
+        if opciones == "ROSTER":
+            opciones = [x["nombre"] for x in ARTISTAS]
+        ops = "".join(f'<option>{escape(o)}</option>' for o in opciones)
+        control = f'<select id="{ide}" name="{name}"><option value="">Elige una opción</option>{ops}</select>'
+    else:
+        extra = ' min="1"' if tipo == "number" else ""
+        control = f'<input type="{tipo}" id="{ide}" name="{name}"{extra}>'
+    return f'''            <div>
+              <label for="{ide}">{escape(etiqueta)}</label>
+              {control}
+            </div>'''
+
+
 def contacto():
     html = cabeza("Contacto | Alzada Records",
-                  "Contacta a Alzada Records para contrataciones de artistas, sync / licensing, marcas y prensa.",
-                  "/contacto/", "/img/compartir.jpg")
-    tarjetas = []
-    for c in CONTACTOS:
-        if c["correo"]:
-            enlace = f'<p class="contacto-nombre"><a href="mailto:{c["correo"]}">{c["correo"]}</a></p>'
-        else:
-            enlace = '<p class="contacto-nombre">Próximamente</p>'
-        tarjetas.append(f"""          <li id="{c['id']}">
-            <h2>{escape(c['titulo'])}</h2>
-            {enlace}
-            <p>{escape(c['texto'])}</p>
-          </li>""")
-    lista = "\n".join(tarjetas)
+                  "Contacta a Alzada Records: booking de artistas, marcas, sync licensing, envío de material, producción musical y audiovisual, y renta de instalaciones.",
+                  "/contacto/", "/img/compartir.jpg",
+                  '  <script src="/js/contacto.js" defer></script>\n')
+    paises = "".join(
+        f'<option value="{escape(n)} {l}"{" selected" if i == 0 else ""}>{b} {escape(n)} {l}</option>'
+        for i, (b, n, l) in enumerate(PAISES))
+    tipos = "".join(
+        f'<option value="{t["id"]}" data-gracias="{escape(t["gracias"])}">{escape(t["etiqueta"])}</option>'
+        for t in TIPOS)
+    grupos = "\n".join(
+        f'''          <fieldset class="campos-tipo" data-tipo="{t["id"]}" hidden disabled>
+            <legend>{escape(t["etiqueta"])}</legend>
+{chr(10).join(campo_extra(*c, t["id"]) for c in t["campos"])}
+          </fieldset>''' for t in TIPOS)
+    # Copias ocultas para que Netlify registre cada tipo como formulario aparte.
+    todos = ["nombre", "correo", "pais", "telefono", "tipo", "mensaje"]
+    ocultos = []
+    for t in TIPOS:
+        nombres = todos + [c[0] for c in t["campos"]]
+        campos = "".join(f'<input name="{n}">' for n in nombres)
+        ocultos.append(f'  <form name="contacto-{t["id"]}" data-netlify="true" netlify-honeypot="bot-field" hidden>'
+                       f'<input name="bot-field">{campos}</form>')
+    ocultos = "\n".join(ocultos)
     html += f"""
-    <section class="seccion">
-      <div class="contenedor">
-        <h1>Contacto</h1>
-        <ul class="contactos">
-{lista}
-        </ul>
+    <section class="seccion contacto" id="formulario">
+      <div class="contenedor contacto-grid">
+        <div>
+          <h1>Contacto</h1>
+          <p class="seccion-intro">Cuéntanos qué necesitas y la persona indicada de nuestro equipo te contactará.</p>
+        </div>
+
+        <form id="form-contacto" class="form-contacto" method="post" novalidate>
+          <input type="hidden" name="form-name" value="contacto-booking">
+          <p class="trampa" aria-hidden="true"><label>No llenar <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div>
+            <label for="c-nombre">Nombre *</label>
+            <input type="text" id="c-nombre" name="nombre" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="c-correo">Correo *</label>
+            <input type="email" id="c-correo" name="correo" autocomplete="email" spellcheck="false" required>
+          </div>
+          <div>
+            <label for="c-telefono">Teléfono *</label>
+            <div class="telefono">
+              <select id="c-pais" name="pais" aria-label="País del teléfono" autocomplete="tel-country-code">{paises}</select>
+              <input type="tel" id="c-telefono" name="telefono" autocomplete="tel-national" inputmode="tel" required>
+            </div>
+          </div>
+          <div>
+            <label for="tipo">Tipo de solicitud *</label>
+            <select id="tipo" name="tipo" required><option value="">Elige una opción</option>{tipos}</select>
+          </div>
+{grupos}
+          <div>
+            <label for="c-mensaje">Comentarios *</label>
+            <textarea id="c-mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+          <button class="boton" type="submit">Enviar</button>
+          <p class="form-mensaje" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="contacto-gracias" id="contacto-gracias" tabindex="-1" hidden>
+          <h2>¡Listo!</h2>
+          <p></p>
+        </div>
       </div>
     </section>
-{newsletter()}{pie()}"""
+
+  <!-- Copias ocultas para Netlify Forms (una por tipo de solicitud). No se ven en la página. -->
+{ocultos}
+{pie()}"""
     carpeta = RAIZ / "contacto"
     carpeta.mkdir(exist_ok=True)
     (carpeta / "index.html").write_text(html, encoding="utf-8")

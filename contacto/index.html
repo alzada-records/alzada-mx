@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contacto | Alzada Records</title>
-  <meta name="description" content="Contacta a Alzada Records para contrataciones de artistas, sync / licensing, marcas y prensa.">
+  <meta name="description" content="Contacta a Alzada Records: booking de artistas, marcas, sync licensing, envío de material, producción musical y audiovisual, y renta de instalaciones.">
   <meta name="theme-color" content="#0b0b0b">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <meta property="og:title" content="Contacto | Alzada Records">
-  <meta property="og:description" content="Contacta a Alzada Records para contrataciones de artistas, sync / licensing, marcas y prensa.">
+  <meta property="og:description" content="Contacta a Alzada Records: booking de artistas, marcas, sync licensing, envío de material, producción musical y audiovisual, y renta de instalaciones.">
   <meta property="og:image" content="https://www.alzada.mx/img/compartir.jpg">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Alzada">
@@ -18,6 +18,7 @@
   <link rel="canonical" href="https://www.alzada.mx/contacto/">
   <link rel="icon" href="/img/favicon.png" type="image/png">
   <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/contacto.js" defer></script>
   <script src="/js/main.js" defer></script>
   <script src="/js/newsletter.js" defer></script>
 </head>
@@ -43,55 +44,175 @@
 
   <main id="contenido">
 
-    <section class="seccion">
-      <div class="contenedor">
-        <h1>Contacto</h1>
-        <ul class="contactos">
-          <li id="contrataciones">
-            <h2>Contrataciones</h2>
-            <p class="contacto-nombre">Próximamente</p>
-            <p>Shows, festivales y eventos privados con artistas de Alzada.</p>
-          </li>
-          <li id="sync">
-            <h2>Sync / Licensing</h2>
-            <p class="contacto-nombre">Próximamente</p>
-            <p>Música de nuestro catálogo para cine, series, campañas, videojuegos y contenido digital.</p>
-          </li>
-          <li id="general">
-            <h2>Marcas y prensa</h2>
-            <p class="contacto-nombre">Próximamente</p>
-            <p>Colaboraciones con marcas, entrevistas y todo lo demás.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
+    <section class="seccion contacto" id="formulario">
+      <div class="contenedor contacto-grid">
+        <div>
+          <h1>Contacto</h1>
+          <p class="seccion-intro">Cuéntanos qué necesitas y la persona indicada de nuestro equipo te contactará.</p>
+        </div>
 
-    <!-- Newsletter: Mailchimp (misma audiencia que Ladrones) -->
-    <section class="seccion newsletter" aria-labelledby="titulo-newsletter">
-      <div class="contenedor">
-        <div class="newsletter-caja">
-        <h2 id="titulo-newsletter">Únete a la familia</h2>
-        <p class="seccion-intro">Lanzamientos, fechas y noticias de tus artistas favoritos.</p>
-        <form class="form-lista" action="https://alzada.us19.list-manage.com/subscribe/post?u=32d94c0e4051438d818e68013&amp;id=4bd0645e6c&amp;f_id=00b59be3f0" method="post" target="_blank" rel="noopener" novalidate>
+        <form id="form-contacto" class="form-contacto" method="post" novalidate>
+          <input type="hidden" name="form-name" value="contacto-booking">
+          <p class="trampa" aria-hidden="true"><label>No llenar <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div>
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="FNAME" autocomplete="given-name" required>
+            <label for="c-nombre">Nombre *</label>
+            <input type="text" id="c-nombre" name="nombre" autocomplete="name" required>
           </div>
           <div>
-            <label for="correo">Correo</label>
-            <input type="email" id="correo" name="EMAIL" autocomplete="email" spellcheck="false" required>
+            <label for="c-correo">Correo *</label>
+            <input type="email" id="c-correo" name="correo" autocomplete="email" spellcheck="false" required>
           </div>
-          <div class="casilla">
-            <input type="checkbox" id="acepto" name="acepto" required>
-            <label for="acepto">Quiero recibir noticias de Alzada y sus artistas.</label>
+          <div>
+            <label for="c-telefono">Teléfono *</label>
+            <div class="telefono">
+              <select id="c-pais" name="pais" aria-label="País del teléfono" autocomplete="tel-country-code"><option value="México +52" selected>🇲🇽 México +52</option><option value="Estados Unidos +1">🇺🇸 Estados Unidos +1</option><option value="Canadá +1">🇨🇦 Canadá +1</option><option value="Colombia +57">🇨🇴 Colombia +57</option><option value="Argentina +54">🇦🇷 Argentina +54</option><option value="Chile +56">🇨🇱 Chile +56</option><option value="Perú +51">🇵🇪 Perú +51</option><option value="Ecuador +593">🇪🇨 Ecuador +593</option><option value="Venezuela +58">🇻🇪 Venezuela +58</option><option value="Guatemala +502">🇬🇹 Guatemala +502</option><option value="El Salvador +503">🇸🇻 El Salvador +503</option><option value="Honduras +504">🇭🇳 Honduras +504</option><option value="Costa Rica +506">🇨🇷 Costa Rica +506</option><option value="Panamá +507">🇵🇦 Panamá +507</option><option value="República Dominicana +1">🇩🇴 República Dominicana +1</option><option value="Puerto Rico +1">🇵🇷 Puerto Rico +1</option><option value="España +34">🇪🇸 España +34</option><option value="Otro ">🌎 Otro </option></select>
+              <input type="tel" id="c-telefono" name="telefono" autocomplete="tel-national" inputmode="tel" required>
+            </div>
           </div>
-          <div class="trampa" aria-hidden="true"><input type="text" name="b_32d94c0e4051438d818e68013_4bd0645e6c" tabindex="-1" value="" autocomplete="off"></div>
-          <button class="boton" type="submit">Suscribirme</button>
+          <div>
+            <label for="tipo">Tipo de solicitud *</label>
+            <select id="tipo" name="tipo" required><option value="">Elige una opción</option><option value="booking" data-gracias="¡Gracias! Recibimos tu solicitud de booking. El equipo te contactará para revisar fecha y disponibilidad.">Booking de artistas</option><option value="marcas" data-gracias="¡Gracias! Recibimos tu propuesta. El equipo de marcas la revisará y te contactará.">Marcas y colaboraciones</option><option value="sync" data-gracias="¡Gracias! Recibimos tu solicitud de sync. Te contactaremos con opciones del catálogo y los siguientes pasos.">Sincronizaciones (Sync Licensing)</option><option value="talento" data-gracias="¡Gracias por compartir tu música! Escuchamos todo el material que nos llega; si hay interés, te contactaremos.">Talento – Envío de material</option><option value="produccion" data-gracias="¡Gracias! Recibimos tu solicitud de producción musical. Te contactaremos con disponibilidad y cotización.">Producción musical</option><option value="audiovisual" data-gracias="¡Gracias! Recibimos tu solicitud de producción audiovisual. Te contactaremos con disponibilidad y cotización.">Producción audiovisual</option><option value="instalaciones" data-gracias="¡Gracias! Recibimos tu solicitud. Te contactaremos con disponibilidad y precios de las instalaciones.">Renta de instalaciones / Camps</option></select>
+          </div>
+          <fieldset class="campos-tipo" data-tipo="booking" hidden disabled>
+            <legend>Booking de artistas</legend>
+            <div>
+              <label for="booking-artista">Artista</label>
+              <select id="booking-artista" name="artista"><option value="">Elige una opción</option><option>Ladrones</option><option>MAHO</option><option>Yoss Bones</option><option>Toser One</option><option>Neto Peña</option><option>Zxmyr</option><option>Almanegra</option><option>Jul Diez</option><option>Omar Chaparro</option><option>C-Kan</option><option>Dharius</option><option>Keysie SM</option></select>
+            </div>
+            <div>
+              <label for="booking-fecha_evento">Fecha del evento</label>
+              <input type="date" id="booking-fecha_evento" name="fecha_evento">
+            </div>
+            <div>
+              <label for="booking-ciudad">Ciudad y país del evento</label>
+              <input type="text" id="booking-ciudad" name="ciudad">
+            </div>
+            <div>
+              <label for="booking-tipo_evento">Tipo de evento</label>
+              <select id="booking-tipo_evento" name="tipo_evento"><option value="">Elige una opción</option><option>Concierto</option><option>Festival</option><option>Evento privado</option><option>Evento corporativo</option><option>Otro</option></select>
+            </div>
+            <div>
+              <label for="booking-presupuesto">Presupuesto aproximado</label>
+              <input type="text" id="booking-presupuesto" name="presupuesto">
+            </div>
+          </fieldset>
+          <fieldset class="campos-tipo" data-tipo="marcas" hidden disabled>
+            <legend>Marcas y colaboraciones</legend>
+            <div>
+              <label for="marcas-empresa">Marca o empresa</label>
+              <input type="text" id="marcas-empresa" name="empresa">
+            </div>
+            <div>
+              <label for="marcas-tipo_colaboracion">Tipo de colaboración</label>
+              <select id="marcas-tipo_colaboracion" name="tipo_colaboracion"><option value="">Elige una opción</option><option>Campaña con artista</option><option>Contenido para redes</option><option>Patrocinio</option><option>Producto o merch</option><option>Otro</option></select>
+            </div>
+          </fieldset>
+          <fieldset class="campos-tipo" data-tipo="sync" hidden disabled>
+            <legend>Sincronizaciones (Sync Licensing)</legend>
+            <div>
+              <label for="sync-empresa">Empresa, agencia o productora</label>
+              <input type="text" id="sync-empresa" name="empresa">
+            </div>
+            <div>
+              <label for="sync-proyecto">Tipo de proyecto</label>
+              <select id="sync-proyecto" name="proyecto"><option value="">Elige una opción</option><option>Película</option><option>Serie</option><option>Campaña publicitaria</option><option>Videojuego</option><option>Contenido digital</option><option>Otro</option></select>
+            </div>
+            <div>
+              <label for="sync-cancion">Canción o artista de interés</label>
+              <input type="text" id="sync-cancion" name="cancion">
+            </div>
+            <div>
+              <label for="sync-fecha_uso">Fecha de lanzamiento del proyecto</label>
+              <input type="date" id="sync-fecha_uso" name="fecha_uso">
+            </div>
+          </fieldset>
+          <fieldset class="campos-tipo" data-tipo="talento" hidden disabled>
+            <legend>Talento – Envío de material</legend>
+            <div>
+              <label for="talento-nombre_artistico">Nombre artístico</label>
+              <input type="text" id="talento-nombre_artistico" name="nombre_artistico">
+            </div>
+            <div>
+              <label for="talento-ciudad">Ciudad</label>
+              <input type="text" id="talento-ciudad" name="ciudad">
+            </div>
+            <div>
+              <label for="talento-link_musica">Link a tu música (Spotify, YouTube, SoundCloud…)</label>
+              <input type="url" id="talento-link_musica" name="link_musica">
+            </div>
+            <div>
+              <label for="talento-redes">Tu Instagram o TikTok</label>
+              <input type="text" id="talento-redes" name="redes">
+            </div>
+          </fieldset>
+          <fieldset class="campos-tipo" data-tipo="produccion" hidden disabled>
+            <legend>Producción musical</legend>
+            <div>
+              <label for="produccion-servicio">Servicio</label>
+              <select id="produccion-servicio" name="servicio"><option value="">Elige una opción</option><option>Producción</option><option>Mezcla</option><option>Masterización</option><option>Composición</option><option>Otro</option></select>
+            </div>
+            <div>
+              <label for="produccion-link_musica">Link de referencia o demo (opcional)</label>
+              <input type="url" id="produccion-link_musica" name="link_musica">
+            </div>
+            <div>
+              <label for="produccion-fecha_estimada">Fecha estimada</label>
+              <input type="date" id="produccion-fecha_estimada" name="fecha_estimada">
+            </div>
+          </fieldset>
+          <fieldset class="campos-tipo" data-tipo="audiovisual" hidden disabled>
+            <legend>Producción audiovisual</legend>
+            <div>
+              <label for="audiovisual-servicio">Servicio</label>
+              <select id="audiovisual-servicio" name="servicio"><option value="">Elige una opción</option><option>Videoclip</option><option>Contenido para redes</option><option>Fotografía</option><option>Comercial</option><option>Otro</option></select>
+            </div>
+            <div>
+              <label for="audiovisual-fecha_estimada">Fecha estimada</label>
+              <input type="date" id="audiovisual-fecha_estimada" name="fecha_estimada">
+            </div>
+            <div>
+              <label for="audiovisual-presupuesto">Presupuesto aproximado</label>
+              <input type="text" id="audiovisual-presupuesto" name="presupuesto">
+            </div>
+          </fieldset>
+          <fieldset class="campos-tipo" data-tipo="instalaciones" hidden disabled>
+            <legend>Renta de instalaciones / Camps</legend>
+            <div>
+              <label for="instalaciones-espacio">Qué necesitas</label>
+              <select id="instalaciones-espacio" name="espacio"><option value="">Elige una opción</option><option>Estudio de grabación</option><option>Camp de composición</option><option>Foro / sesión</option><option>Otro</option></select>
+            </div>
+            <div>
+              <label for="instalaciones-fechas">Fechas que te interesan</label>
+              <input type="text" id="instalaciones-fechas" name="fechas">
+            </div>
+            <div>
+              <label for="instalaciones-personas">Número de personas</label>
+              <input type="number" id="instalaciones-personas" name="personas" min="1">
+            </div>
+          </fieldset>
+          <div>
+            <label for="c-mensaje">Comentarios *</label>
+            <textarea id="c-mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+          <button class="boton" type="submit">Enviar</button>
           <p class="form-mensaje" role="status" aria-live="polite"></p>
         </form>
+
+        <div class="contacto-gracias" id="contacto-gracias" tabindex="-1" hidden>
+          <h2>¡Listo!</h2>
+          <p></p>
         </div>
       </div>
     </section>
+
+  <!-- Copias ocultas para Netlify Forms (una por tipo de solicitud). No se ven en la página. -->
+  <form name="contacto-booking" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="nombre"><input name="correo"><input name="pais"><input name="telefono"><input name="tipo"><input name="mensaje"><input name="artista"><input name="fecha_evento"><input name="ciudad"><input name="tipo_evento"><input name="presupuesto"></form>
+  <form name="contacto-marcas" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="nombre"><input name="correo"><input name="pais"><input name="telefono"><input name="tipo"><input name="mensaje"><input name="empresa"><input name="tipo_colaboracion"></form>
+  <form name="contacto-sync" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="nombre"><input name="correo"><input name="pais"><input name="telefono"><input name="tipo"><input name="mensaje"><input name="empresa"><input name="proyecto"><input name="cancion"><input name="fecha_uso"></form>
+  <form name="contacto-talento" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="nombre"><input name="correo"><input name="pais"><input name="telefono"><input name="tipo"><input name="mensaje"><input name="nombre_artistico"><input name="ciudad"><input name="link_musica"><input name="redes"></form>
+  <form name="contacto-produccion" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="nombre"><input name="correo"><input name="pais"><input name="telefono"><input name="tipo"><input name="mensaje"><input name="servicio"><input name="link_musica"><input name="fecha_estimada"></form>
+  <form name="contacto-audiovisual" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="nombre"><input name="correo"><input name="pais"><input name="telefono"><input name="tipo"><input name="mensaje"><input name="servicio"><input name="fecha_estimada"><input name="presupuesto"></form>
+  <form name="contacto-instalaciones" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="bot-field"><input name="nombre"><input name="correo"><input name="pais"><input name="telefono"><input name="tipo"><input name="mensaje"><input name="espacio"><input name="fechas"><input name="personas"></form>
 
   </main>
 
