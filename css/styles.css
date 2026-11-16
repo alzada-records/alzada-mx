@@ -1,0 +1,693 @@
+/* =========================================================
+   Alzada — estilos base (misma base que ladrones.mx)
+   Colores y tipografía viven en :root para cambiarlos en un solo lugar.
+   ========================================================= */
+
+:root {
+  --color-fondo: #0b0b0b;
+  --color-superficie: #161616;
+  --color-texto: #f2f2f2;
+  --color-texto-suave: #a6a6a6;
+  --color-acento: #e10600;
+  --color-borde: #2a2a2a;
+
+  --fuente-titulos: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --fuente-texto: "Helvetica Neue", Arial, sans-serif;
+
+  --ancho-max: 1120px;
+  --espacio: 1rem;
+  --radio: 6px;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+img,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: var(--color-acento);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulos);
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0 0 var(--espacio);
+}
+
+h1 { font-size: clamp(2.25rem, 7vw, 4.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.25rem); }
+
+/* Enlace "Saltar al contenido" para teclado y lectores de pantalla */
+.saltar {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.75rem 1rem;
+  background: var(--color-acento);
+  color: #fff;
+  z-index: 100;
+}
+
+.saltar:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+.contenedor {
+  width: min(100% - 2rem, var(--ancho-max));
+  margin-inline: auto;
+}
+
+/* ---------- Encabezado y menú ---------- */
+
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgb(11 11 11 / 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.encabezado .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+}
+
+.logo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.logo img {
+  display: block;
+  height: 52px;
+  width: auto;
+}
+
+.menu-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  color: var(--color-texto);
+  font: inherit;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu.abierto {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 76px;
+  left: 0;
+  right: 0;
+  padding: var(--espacio);
+  background: var(--color-fondo);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.menu a {
+  display: block;
+  padding: 0.75rem 0.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.9rem;
+}
+
+.menu a[aria-current="page"] {
+  color: var(--color-acento);
+}
+
+@media (min-width: 768px) {
+  .menu-boton {
+    display: none;
+  }
+
+  .menu {
+    display: flex;
+    gap: 0.25rem;
+  }
+}
+
+/* ---------- Secciones ---------- */
+
+main {
+  min-height: 60vh;
+}
+
+/* Que los títulos no queden debajo del encabezado fijo */
+[id] {
+  scroll-margin-top: 92px;
+}
+
+.seccion {
+  padding-block: clamp(3rem, 8vw, 6rem);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.seccion-intro {
+  color: var(--color-texto-suave);
+  max-width: 60ch;
+}
+
+.portada {
+  padding-block: clamp(4rem, 12vw, 9rem);
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-acento);
+  border: 0;
+  border-radius: var(--radio);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+.boton:hover {
+  color: #fff;
+  filter: brightness(1.1);
+}
+
+.boton-secundario {
+  background: transparent;
+  border: 1px solid var(--color-texto);
+}
+
+/* ---------- Newsletter ---------- */
+
+.newsletter form {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 480px;
+}
+
+.newsletter label {
+  font-size: 0.9rem;
+  color: var(--color-texto-suave);
+}
+
+.newsletter input[type="text"],
+.newsletter input[type="email"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.6rem 0.75rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio);
+  color: var(--color-texto);
+  font: inherit;
+}
+
+.casilla {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+/* ---------- Pie de página ---------- */
+
+.pie {
+  padding-block: 3rem;
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.redes {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.redes {
+  gap: 0.5rem 1rem;
+}
+
+.redes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.redes a:hover,
+.redes a:focus-visible {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.redes img {
+  width: 28px;
+  height: 28px;
+}
+
+/* ---------- Discografía (página Música) ---------- */
+
+.seccion-titulo {
+  padding-bottom: 1rem;
+  border-bottom: 0;
+}
+
+/* Respetar a quien pide menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Merch (carrusel de Negro Pasión) ---------- */
+.merch-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.merch-flechas {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.merch-flechas[hidden] {
+  display: none;
+}
+
+.merch-flecha {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-borde);
+  border-radius: 50%;
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.merch-flecha:hover,
+.merch-flecha:focus-visible {
+  border-color: var(--color-acento);
+}
+
+.merch-lista {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 70%;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 0 0 0.75rem;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+
+.merch-lista:empty {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .merch-lista { grid-auto-columns: calc((100% - 2rem) / 3); }
+}
+
+@media (min-width: 900px) {
+  .merch-lista { grid-auto-columns: calc((100% - 3rem) / 4); }
+}
+
+.merch-producto {
+  scroll-snap-align: start;
+}
+
+.merch-producto a {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+.merch-foto {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: #f2f2f2;
+}
+
+.merch-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.merch-producto a:hover .merch-foto img,
+.merch-producto a:focus-visible .merch-foto img {
+  transform: scale(1.04);
+}
+
+.merch-agotado {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--color-fondo);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.merch-nombre {
+  margin-top: 0.4rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.merch-precio {
+  color: var(--color-texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .merch-foto img { transition: none; }
+}
+
+/* ---------- Barra de redes (inicio) ---------- */
+.barra-redes {
+  border-bottom: 1px solid var(--color-borde);
+  background: var(--color-superficie);
+}
+
+.barra-redes ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem clamp(0.5rem, 3vw, 2.5rem);
+  margin: 0;
+  padding: 0.75rem 0;
+  list-style: none;
+}
+
+.barra-redes a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 0.5rem;
+  color: var(--color-texto);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.barra-redes a:hover,
+.barra-redes a:focus-visible {
+  opacity: 1;
+  color: var(--color-acento);
+}
+
+.barra-redes img {
+  width: 24px;
+  height: 24px;
+}
+
+/* En celular solo los íconos; el nombre queda para lectores de pantalla. */
+@media (max-width: 699px) {
+  .barra-redes span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+.fechas-boton {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* ---------- Formulario de la lista (mensajes) ---------- */
+.trampa {
+  position: absolute;
+  left: -5000px;
+}
+
+.form-mensaje {
+  min-height: 1.5em;
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: var(--color-texto-suave);
+}
+
+.form-mensaje[data-tipo="ok"] { color: #7bd88f; }
+.form-mensaje[data-tipo="error"] { color: #ff6b6b; }
+
+.form-lista button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* ---------- Ajustes de la revisión (accesibilidad y táctil) ---------- */
+/* Al navegar con teclado, que el encabezado fijo no tape lo enfocado */
+html {
+  scroll-padding-top: 92px;
+}
+
+/* Sin retraso de doble toque en celular; el foco visible ya marca el estado */
+a,
+button,
+input,
+label {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   Alzada — piezas propias del sitio
+   ========================================================= */
+
+/* Logo en texto mientras llega el archivo del logo */
+.logo-texto {
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* ---------- Lanzamientos (encabezado del inicio) ---------- */
+.lanzamientos h1 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+.lanzamientos-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espacio);
+}
+
+@media (min-width: 700px) {
+  .lanzamientos-lista { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1000px) {
+  .lanzamientos-lista { grid-template-columns: repeat(6, 1fr); }
+}
+
+.lanzamiento a {
+  display: block;
+  text-decoration: none;
+}
+
+.lanzamiento img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radio);
+  background: var(--color-superficie);
+  transition: transform 0.2s ease;
+}
+
+.lanzamiento a:hover img,
+.lanzamiento a:focus-visible img {
+  transform: translateY(-3px);
+}
+
+.lanzamiento-titulo {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ---------- Roster ---------- */
+.roster {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espacio);
+}
+
+@media (min-width: 600px) {
+  .roster { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1000px) {
+  .roster { grid-template-columns: repeat(4, 1fr); }
+}
+
+.artista-tarjeta a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radio);
+  text-decoration: none;
+}
+
+.artista-tarjeta img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(0.35);
+}
+
+.artista-tarjeta a:hover img,
+.artista-tarjeta a:focus-visible img {
+  transform: scale(1.04);
+  filter: none;
+}
+
+.artista-nombre {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 2.5rem 0.75rem 0.75rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  font-family: var(--fuente-titulos);
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #fff;
+}
+
+/* ---------- Página de artista ---------- */
+.artista-grid {
+  display: grid;
+  gap: calc(var(--espacio) * 2);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .artista-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.artista-foto {
+  width: 100%;
+  border-radius: var(--radio);
+}
+
+.artista-texto p {
+  color: var(--color-texto-suave);
+  max-width: 60ch;
+}
+
+.artista-texto .seccion-intro a {
+  color: var(--color-texto-suave);
+}
+
+.spotify {
+  border: 0;
+  border-radius: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lanzamiento img,
+  .artista-tarjeta img { transition: none; }
+}
