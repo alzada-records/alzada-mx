@@ -1,6 +1,11 @@
 // Formulario de Contacto: muestra las preguntas según el tipo de solicitud,
 // lo envía a Netlify Forms como "contacto-<tipo>" y enseña el mensaje de ese tipo.
 // Netlify manda el aviso por correo a quien atiende cada tipo (se configura en Netlify).
+// "Talento – Envío de material" no va a Netlify: se guarda en una hoja de Google Sheets
+// del Drive personal de Lorenzo (ver herramientas/apps-script-talento.gs) y no avisa a nadie.
+
+// URL de la aplicación web de Apps Script de la hoja "Alzada – Envíos de talento".
+const TALENTO_URL = "";
 
 const form = document.getElementById("form-contacto");
 
@@ -50,12 +55,18 @@ if (form) {
     mensaje.textContent = T.enviando;
 
     try {
-      const respuesta = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(datos).toString(),
-      });
-      if (!respuesta.ok) throw new Error(respuesta.status);
+      if (tipo.value === "talento") {
+        if (!TALENTO_URL) throw new Error("Falta TALENTO_URL");
+        // Apps Script no deja leer su respuesta desde otro sitio ("no-cors"); si no hay error de red, llegó.
+        await fetch(TALENTO_URL, { method: "POST", mode: "no-cors", body: new URLSearchParams(datos) });
+      } else {
+        const respuesta = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(datos).toString(),
+        });
+        if (!respuesta.ok) throw new Error(respuesta.status);
+      }
       const opcion = tipo.options[tipo.selectedIndex];
       gracias.querySelector("p").textContent = opcion.dataset.gracias;
       form.hidden = true;

@@ -18,6 +18,7 @@ Sitio web de Alzada (alzada.mx), HTML y CSS sin CMS. Misma base que ladrones.mx.
 ## Lista de pendientes
 
 - [ ] Versión en inglés en `/en/`
-- [ ] Correo de quien atiende cada tipo de solicitud de Contacto (se pone en Netlify > Forms > notificaciones, uno por formulario `contacto-<tipo>`)
+- [ ] En Netlify > Forms > notificaciones: avisos a charliefelix@alzada.mx para booking, marcas, sync, produccion, audiovisual e instalaciones
+- [ ] Talento: publicar el Apps Script de la hoja "Alzada – Envíos de talento" (Drive personal) y pegar su URL en `TALENTO_URL` de `js/contacto.js`
 - [x] Redirecciones de Wix, sitemap (se arma solo con generar.py), robots y página 404
 - [ ] Netlify y dominio alzada.mx
