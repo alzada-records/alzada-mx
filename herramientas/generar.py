@@ -80,9 +80,9 @@ def cabeza(titulo, descripcion, ruta, imagen, extra=""):
           <li><a href="/"{' aria-current="page"' if ruta == "/" else ""}>Inicio</a></li>
           <li><a href="/#roster">Roster</a></li>
           <li><a href="/#lanzamientos">Lanzamientos</a></li>
-          <li><a href="/#merch">Merch</a></li>
           <li><a href="/#nosotros">Nosotros</a></li>
           <li><a href="/#sync">Sync</a></li>
+          <li><a href="/#merch">Merch</a></li>
           <li><a href="/contacto/"{' aria-current="page"' if ruta == "/contacto/" else ""}>Contacto</a></li>
         </ul>
       </nav>
@@ -250,6 +250,18 @@ def inicio():
         <img src="/img/nosotros-800.webp" srcset="/img/nosotros-800.webp 800w, /img/nosotros-1400.webp 1400w" sizes="(min-width: 900px) 540px, 100vw" alt="Artistas de Alzada con sus discos de certificación" width="1400" height="933" loading="lazy">
       </div>
     </section>
+    <!-- Sync / Licensing -->
+    <section class="seccion nosotros sync" id="sync" aria-labelledby="titulo-sync">
+      <div class="contenedor nosotros-grid">
+        <img src="/img/sync-800.webp" srcset="/img/sync-800.webp 800w, /img/sync-1400.webp 1400w" sizes="(min-width: 900px) 540px, 100vw" alt="Recepción de las oficinas de Alzada con discos de certificación en las paredes" width="1400" height="933" loading="lazy">
+        <div>
+          <h2 id="titulo-sync">Sync / Licensing</h2>
+          <p>En <span translate="no">Alzada</span>, la sincronización y el licensing convierten la música en un activo estratégico. Nuestro catálogo reúne propuestas auténticas y versátiles, listas para integrarse en películas, series, campañas, videojuegos y contenido digital, aportando identidad, emoción y valor a cada proyecto.</p>
+          <p>Trabajamos de forma ágil y curatorial, facilitando la gestión de derechos, autorizaciones y entregables para acelerar procesos sin fricción. Desde la selección del track ideal hasta el cierre de la licencia, alineamos creatividad con objetivos comerciales, ayudando a marcas, agencias y productoras a conectar con nuevas audiencias a través de la música.</p>
+          <p><a class="boton" href="/contacto/?tipo=sync#formulario">Contactar</a></p>
+        </div>
+      </div>
+    </section>
     <!-- Merch: productos de Alzada Streetwear (Shopify). Se llenan solos con js/merch.js. -->
     <section class="seccion merch" id="merch" aria-labelledby="titulo-merch">
       <div class="contenedor">
@@ -262,18 +274,6 @@ def inicio():
         </div>
         <ul class="merch-lista" id="merch-lista" aria-live="polite"></ul>
         <p><a class="boton boton-secundario" href="{TIENDA}" target="_blank" rel="noopener">Ver tienda</a></p>
-      </div>
-    </section>
-    <!-- Sync / Licensing -->
-    <section class="seccion nosotros sync" id="sync" aria-labelledby="titulo-sync">
-      <div class="contenedor nosotros-grid">
-        <img src="/img/sync-800.webp" srcset="/img/sync-800.webp 800w, /img/sync-1400.webp 1400w" sizes="(min-width: 900px) 540px, 100vw" alt="Recepción de las oficinas de Alzada con discos de certificación en las paredes" width="1400" height="933" loading="lazy">
-        <div>
-          <h2 id="titulo-sync">Sync / Licensing</h2>
-          <p>En <span translate="no">Alzada</span>, la sincronización y el licensing convierten la música en un activo estratégico. Nuestro catálogo reúne propuestas auténticas y versátiles, listas para integrarse en películas, series, campañas, videojuegos y contenido digital, aportando identidad, emoción y valor a cada proyecto.</p>
-          <p>Trabajamos de forma ágil y curatorial, facilitando la gestión de derechos, autorizaciones y entregables para acelerar procesos sin fricción. Desde la selección del track ideal hasta el cierre de la licencia, alineamos creatividad con objetivos comerciales, ayudando a marcas, agencias y productoras a conectar con nuevas audiencias a través de la música.</p>
-          <p><a class="boton" href="/contacto/?tipo=sync#formulario">Contactar</a></p>
-        </div>
       </div>
     </section>
 {newsletter()}{pie()}"""
