@@ -74,6 +74,7 @@ def cabeza(titulo, descripcion, ruta, imagen, extra=""):
           <li><a href="/"{' aria-current="page"' if ruta == "/" else ""}>Inicio</a></li>
           <li><a href="/#roster">Roster</a></li>
           <li><a href="/#merch">Merch</a></li>
+          <li><a href="/#nosotros">Nosotros</a></li>
         </ul>
       </nav>
     </div>
@@ -203,20 +204,6 @@ def inicio():
       </div>
     </section>
 
-    <!-- Videos: el más nuevo del canal de Alzada y los que siguen (js/videos.js) -->
-    <section class="seccion portada videos-inicio" data-canal="UCb41Xk6cDPcz1r_xEhQqvuA" aria-labelledby="titulo-videos">
-      <div class="contenedor">
-        <h2 id="titulo-videos" class="oculto">Videos de Alzada</h2>
-        <iframe class="video" id="reproductor"
-          src="https://www.youtube.com/embed/videoseries?list=UULFb41Xk6cDPcz1r_xEhQqvuA"
-          title="Videos más recientes de Alzada"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-        <p class="video-actual" id="video-actual" aria-live="polite"></p>
-        <ul class="videos-lista" id="videos-lista" aria-label="Más videos"></ul>
-      </div>
-    </section>
 {barra_redes(REDES_ALZADA, "Alzada")}
     <!-- Roster: cada foto lleva a la página del artista -->
     <section class="seccion" id="roster" aria-labelledby="titulo-roster">
@@ -225,6 +212,21 @@ def inicio():
         <ul class="roster">
 {roster()}
         </ul>
+      </div>
+    </section>
+
+    <!-- Videos: el más nuevo del canal de Alzada y los que siguen (js/videos.js) -->
+    <section class="seccion videos-inicio" data-canal="UCb41Xk6cDPcz1r_xEhQqvuA" aria-labelledby="titulo-videos">
+      <div class="contenedor">
+        <h2 id="titulo-videos">Lo más nuevo</h2>
+        <iframe class="video" id="reproductor"
+          src="https://www.youtube.com/embed/videoseries?list=UULFb41Xk6cDPcz1r_xEhQqvuA"
+          title="Videos más recientes de Alzada"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+        <p class="video-actual" id="video-actual" aria-live="polite"></p>
+        <ul class="videos-lista" id="videos-lista" aria-label="Más videos"></ul>
       </div>
     </section>
 
@@ -240,6 +242,17 @@ def inicio():
         </div>
         <ul class="merch-lista" id="merch-lista" aria-live="polite"></ul>
         <p><a class="boton boton-secundario" href="{TIENDA}" target="_blank" rel="noopener">Ver tienda</a></p>
+      </div>
+    </section>
+    <!-- Nosotros -->
+    <section class="seccion nosotros" id="nosotros" aria-labelledby="titulo-nosotros">
+      <div class="contenedor nosotros-grid">
+        <div>
+          <h2 id="titulo-nosotros">Nosotros</h2>
+          <p><span translate="no">Alzada</span> nace en Guadalajara, Jalisco, para abrirle paso al talento emergente en una industria llena de barreras y fórmulas repetidas. Lo que empezó como un movimiento independiente hoy es un ecosistema creativo construido sobre la autenticidad, la calle y la conexión directa con una nueva generación.</p>
+          <p>Desde etapas tempranas ha apostado por artistas que hoy son referentes de la escena urbana en México y Latinoamérica. Con producción audiovisual, contenido digital, colaboraciones con marcas y experiencias en vivo, <span translate="no">Alzada</span> es más que un sello: una plataforma 360 que sigue rompiendo esquemas y elevando el estándar de la música en Latinoamérica.</p>
+        </div>
+        <img src="/img/nosotros-800.webp" srcset="/img/nosotros-800.webp 800w, /img/nosotros-1400.webp 1400w" sizes="(min-width: 900px) 540px, 100vw" alt="Artistas de Alzada con sus discos de certificación" width="1400" height="933" loading="lazy">
       </div>
     </section>
 {newsletter()}{pie()}"""

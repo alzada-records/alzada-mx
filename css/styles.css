@@ -849,3 +849,24 @@ label {
 .hero-lanzamiento .seccion-intro {
   margin: 0;
 }
+
+/* ---------- Nosotros ---------- */
+.nosotros-grid {
+  display: grid;
+  gap: calc(var(--espacio) * 2);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .nosotros-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.nosotros p {
+  color: var(--color-texto-suave);
+  max-width: 60ch;
+}
+
+.nosotros img {
+  width: 100%;
+  border-radius: var(--radio);
+}
