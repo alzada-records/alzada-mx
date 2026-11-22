@@ -1,9 +1,9 @@
 # Aviso de privacidad de Alzada (aplica a alzada.mx y ladrones.mx).
 # Los datos marcados en RESPONSABLE se llenan con la información legal de la empresa.
 RESPONSABLE = {
-    "nombre": "[RAZÓN SOCIAL PENDIENTE]",
-    "domicilio": "[DOMICILIO PENDIENTE]",
-    "correo": "[CORREO PENDIENTE]",
+    "nombre": "XXX (razón social)",
+    "domicilio": "XXX (domicilio)",
+    "correo": "XXX (correo)",
 }
 ACTUALIZADO = ("21 de noviembre de 2026", "November 21, 2026")
 

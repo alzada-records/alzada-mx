@@ -6,6 +6,16 @@
 // URL de la aplicación web de Apps Script (la misma en Alzada, Ladrones y Tattoo Music Fest).
 const CONTACTO_URL = "https://script.google.com/macros/s/AKfycbw3XUBhCSspVCCI3nQIg-GEtVpGP2ZChQPaZpUB65EthL0vXAobaTE8q3tlmMF5dasO/exec";
 
+// Manda los datos al Apps Script sin esperar su respuesta (Google tarda varios segundos y,
+// desde otro sitio, la respuesta ni siquiera se puede leer). sendBeacon deja el envío en cola
+// del navegador y regresa al instante; si no existe, se usa fetch con un tope de 6 segundos.
+function mandarContacto(url, datos) {
+  if (!url.startsWith("https://")) return Promise.reject(new Error("Falta la URL del Apps Script"));
+  if (navigator.sendBeacon && navigator.sendBeacon(url, datos)) return Promise.resolve();
+  const envio = fetch(url, { method: "POST", mode: "no-cors", body: datos, keepalive: true });
+  return Promise.race([envio, new Promise((listo) => setTimeout(listo, 6000))]);
+}
+
 const form = document.getElementById("form-contacto");
 
 if (form) {
@@ -56,9 +66,7 @@ if (form) {
     mensaje.textContent = T.enviando;
 
     try {
-      if (!CONTACTO_URL.startsWith("https://")) throw new Error("Falta CONTACTO_URL");
-      // Apps Script no deja leer su respuesta desde otro sitio ("no-cors"); si no hay error de red, llegó.
-      await fetch(CONTACTO_URL, { method: "POST", mode: "no-cors", body: datos });
+      await mandarContacto(CONTACTO_URL, datos);
       const opcion = tipo.options[tipo.selectedIndex];
       gracias.querySelector("p").textContent = opcion.dataset.gracias;
       form.hidden = true;
