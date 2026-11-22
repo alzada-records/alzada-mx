@@ -1150,3 +1150,8 @@ label {
 @media (min-width: 768px) {
   .menu { align-items: center; }
 }
+
+/* Íconos de redes en una sola línea en celular */
+@media (max-width: 480px) {
+  .redes { gap: 0.5rem 0.25rem; }
+}

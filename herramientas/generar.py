@@ -57,20 +57,20 @@ TIENDA = "https://alzadastreetwear.com/collections/merch-alzada"
 #   portada: arte del disco (local o de Spotify)
 #   mas: segundo botón (texto en español, texto en inglés, link; un link que empieza con / es del sitio)
 HERO = [
-    {"artista": "Ladrones", "titulo": "Arriba La L",
-     "tipo": ("Nuevo álbum · 2026", "New album · 2026"),
-     "portada": "/img/lanzamientos/arriba-la-l.webp",
-     "fondo": ("/img/fondos/musica-960.webp", "/img/fondos/musica-1920.webp"),
-     "posicion": "center 20%",
-     "escuchar": "https://open.spotify.com/album/1XKtSl05ezH6lWTmVgTLUL",
-     "mas": ("Toda la música", "All music", "https://www.ladrones.mx/lanzamientos/")},
-    {"artista": "Toser One", "titulo": "Trankilon",
-     "tipo": ("Nuevo sencillo · 2026", "New single · 2026"),
-     "portada": "https://i.scdn.co/image/ab67616d00001e02b963875867bace9f797e7dc9",
-     "fondo": ("/img/artistas/toser-one-grande.webp", "/img/artistas/toser-one-grande.webp"),
+    {"artista": "Yoss Bones", "titulo": "Bb $oy yo",
+     "tipo": ("Nuevo EP · 2026", "New EP · 2026"),
+     "portada": "https://i.scdn.co/image/ab67616d00001e02b1988474c2f167c7ee03ec74",
+     "fondo": ("/img/artistas/yoss-bones-grande.webp", "/img/artistas/yoss-bones-grande.webp"),
      "posicion": "center 25%",
-     "escuchar": "https://open.spotify.com/album/6PIPifvLUMtTrjBacOlpqX",
-     "mas": ("Ver artista", "View artist", "/toser-one/")},
+     "escuchar": "https://open.spotify.com/album/6bspMNWcjH8ryugufTcTxh",
+     "mas": ("Ver artista", "View artist", "/yoss-bones/")},
+    {"artista": "Neto Peña", "titulo": "Mañana Será Otro Día",
+     "tipo": ("Álbum · 2025", "Album · 2025"),
+     "portada": "https://i.scdn.co/image/ab67616d00001e022d60e35e9b7d95e9095081d5",
+     "fondo": ("/img/artistas/neto-pena-grande.webp", "/img/artistas/neto-pena-grande.webp"),
+     "posicion": "center 25%",
+     "escuchar": "https://open.spotify.com/album/6LOpEa2PQnIhwMzeE9levS",
+     "mas": ("Ver artista", "View artist", "/neto-pena/")},
     {"artista": "Zxmyr", "titulo": "ZXM-YR Mami",
      "tipo": ("Nuevo álbum · 2026", "New album · 2026"),
      "portada": "https://i.scdn.co/image/ab67616d00001e02834c90c7f6457811efc48042",
@@ -78,6 +78,20 @@ HERO = [
      "posicion": "center 30%",
      "escuchar": "https://open.spotify.com/album/1lQGIOE4Buny19S91SjKKy",
      "mas": ("Ver artista", "View artist", "/zxmyr/")},
+    {"artista": "Ladrones", "titulo": "Arriba La L",
+     "tipo": ("Nuevo álbum · 2026", "New album · 2026"),
+     "portada": "/img/lanzamientos/arriba-la-l.webp",
+     "fondo": ("/img/artistas/ladrones-grande.webp", "/img/artistas/ladrones-grande.webp"),
+     "posicion": "center 25%",
+     "escuchar": "https://open.spotify.com/album/1XKtSl05ezH6lWTmVgTLUL",
+     "mas": ("Toda la música", "All music", "https://www.ladrones.mx/lanzamientos/")},
+    {"artista": "Toser One", "titulo": "Botellas En La Banqueta y Un Corazón Herido",
+     "tipo": ("Nuevo álbum · 2026", "New album · 2026"),
+     "portada": "https://i.scdn.co/image/ab67616d00001e02ec934a6b8bf7ca83f29a81ad",
+     "fondo": ("/img/artistas/toser-one-grande.webp", "/img/artistas/toser-one-grande.webp"),
+     "posicion": "center 25%",
+     "escuchar": "https://open.spotify.com/album/37TRdrlnuAOvMxUOur1ILs",
+     "mas": ("Ver artista", "View artist", "/toser-one/")},
 ]
 
 MAILCHIMP = "https://alzada.us19.list-manage.com/subscribe/post?u=32d94c0e4051438d818e68013&amp;id=4bd0645e6c&amp;f_id=00b59be3f0"
@@ -250,7 +264,7 @@ def pie():
       <ul class="redes">
 {lista_redes(REDES_ALZADA, 28, False, "Alzada")}
       </ul>
-      <p>© 2027 <span translate="no">Alzada Corp</span></p>
+      <p>© 2027 <span translate="no">Alzada</span></p>
     </div>
   </footer>
 </body>
@@ -315,8 +329,8 @@ def inicio():
                   t("Alzada Records: disquera mexicana independiente. Conoce a nuestros artistas, sus lanzamientos y el merch oficial.",
                     "Alzada Records: independent Mexican record label. Meet our artists, their latest releases and the official merch."),
                   ("/", "/en/"), "/img/compartir.jpg",
-                  '  <link rel="preload" as="image" href="/img/fondos/musica-1920.webp" media="(min-width: 900px)" fetchpriority="high">\n'
-                  '  <link rel="preload" as="image" href="/img/fondos/musica-960.webp" media="(max-width: 899px)" fetchpriority="high">\n'
+                  f'  <link rel="preload" as="image" href="{HERO[0]["fondo"][1]}" media="(min-width: 900px)" fetchpriority="high">\n'
+                  f'  <link rel="preload" as="image" href="{HERO[0]["fondo"][0]}" media="(max-width: 899px)" fetchpriority="high">\n'
                   '  <link rel="preconnect" href="https://www.youtube.com">\n'
                   '  <link rel="preconnect" href="https://www.googleapis.com">\n'
                   '  <link rel="preconnect" href="https://alzadastreetwear.com">\n'
