@@ -123,28 +123,44 @@
       </div>
     </section>
 
-    <!-- Newsletter: Mailchimp (misma audiencia que Ladrones) -->
+    <!-- Newsletter: se guarda en la hoja de Google "Alzada – Fans y contacto" (js/newsletter.js) -->
     <section class="seccion newsletter newsletter-foto" aria-labelledby="titulo-newsletter">
       <div class="contenedor">
         <div class="newsletter-caja">
         <h2 id="titulo-newsletter">Join the family</h2>
         <p class="seccion-intro">Releases, tour dates and news from your favorite artists.</p>
-        <form class="form-lista" action="https://alzada.us19.list-manage.com/subscribe/post?u=32d94c0e4051438d818e68013&amp;id=4bd0645e6c&amp;f_id=00b59be3f0" method="post" target="_blank" rel="noopener" novalidate>
+        <form class="form-lista" data-sitio="alzada" novalidate>
           <div>
             <label for="nombre">Name</label>
-            <input type="text" id="nombre" name="FNAME" autocomplete="given-name" required>
+            <input type="text" id="nombre" name="nombre" autocomplete="given-name" required>
           </div>
           <div>
             <label for="correo">Email</label>
-            <input type="email" id="correo" name="EMAIL" autocomplete="email" spellcheck="false" required>
+            <input type="email" id="correo" name="correo" autocomplete="email" spellcheck="false" required>
           </div>
+          <fieldset class="artistas-favoritos">
+            <legend>Favorite artists *</legend>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Ladrones"> <span translate="no">Ladrones</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="MAHO"> <span translate="no">MAHO</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Yoss Bones"> <span translate="no">Yoss Bones</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Toser One"> <span translate="no">Toser One</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Neto Peña"> <span translate="no">Neto Peña</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Zxmyr"> <span translate="no">Zxmyr</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Almanegra"> <span translate="no">Almanegra</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Jul Diez"> <span translate="no">Jul Diez</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Omar Chaparro"> <span translate="no">Omar Chaparro</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="C-Kan" checked> <span translate="no">C-Kan</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Dharius"> <span translate="no">Dharius</span></label>
+            <label class="casilla"><input type="checkbox" name="artistas" value="Keysie SM"> <span translate="no">Keysie SM</span></label>
+          </fieldset>
           <div class="casilla">
             <input type="checkbox" id="acepto" name="acepto" required>
-            <label for="acepto">I want to get news from Alzada and its artists.</label>
+            <label for="acepto">I agree to receive news from my favorite artists.</label>
           </div>
-          <div class="trampa" aria-hidden="true"><input type="text" name="b_32d94c0e4051438d818e68013_4bd0645e6c" tabindex="-1" value="" autocomplete="off"></div>
+          <p class="trampa" aria-hidden="true"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <button class="boton" type="submit">Subscribe</button>
           <p class="form-mensaje" role="status" aria-live="polite"></p>
+          <p class="form-nota">You can unsubscribe at any time: <a href="/en/unsubscribe/">unsubscribe</a>.</p>
         </form>
         </div>
       </div>

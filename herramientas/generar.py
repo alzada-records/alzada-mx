@@ -94,8 +94,6 @@ HERO = [
      "mas": ("Ver artista", "View artist", "/toser-one/")},
 ]
 
-MAILCHIMP = "https://alzada.us19.list-manage.com/subscribe/post?u=32d94c0e4051438d818e68013&amp;id=4bd0645e6c&amp;f_id=00b59be3f0"
-TRAMPA = "b_32d94c0e4051438d818e68013_4bd0645e6c"
 
 # ---------- Idioma ----------
 LANG = "es"
@@ -113,6 +111,10 @@ def u(ruta):
 
 def ruta_contacto(lang=None):
     return "/en/contact/" if (lang or LANG) == "en" else "/contacto/"
+
+
+def ruta_baja(lang=None):
+    return "/en/unsubscribe/" if (lang or LANG) == "en" else "/baja/"
 
 
 def guardar(ruta, html):
@@ -223,30 +225,40 @@ def barra_redes(redes, nombre):
 """
 
 
-def newsletter():
+def newsletter(marcado=None):
+    """ "Únete a la familia": se guarda en la hoja "Alzada – Fans y contacto" (js/newsletter.js).
+    En la página de un artista, ese artista ya viene marcado."""
+    casillas = "\n".join(
+        f'''            <label class="casilla"><input type="checkbox" name="artistas" value="{escape(a['nombre'])}"{' checked' if a['nombre'] == marcado else ''}> <span translate="no">{escape(a['nombre'])}</span></label>'''
+        for a in ARTISTAS)
     return f"""
-    <!-- Newsletter: Mailchimp (misma audiencia que Ladrones) -->
+    <!-- Newsletter: se guarda en la hoja de Google "Alzada – Fans y contacto" (js/newsletter.js) -->
     <section class="seccion newsletter newsletter-foto" aria-labelledby="titulo-newsletter">
       <div class="contenedor">
         <div class="newsletter-caja">
         <h2 id="titulo-newsletter">{t("Únete a la familia", "Join the family")}</h2>
         <p class="seccion-intro">{t("Lanzamientos, fechas y noticias de tus artistas favoritos.", "Releases, tour dates and news from your favorite artists.")}</p>
-        <form class="form-lista" action="{MAILCHIMP}" method="post" target="_blank" rel="noopener" novalidate>
+        <form class="form-lista" data-sitio="alzada" novalidate>
           <div>
             <label for="nombre">{t("Nombre", "Name")}</label>
-            <input type="text" id="nombre" name="FNAME" autocomplete="given-name" required>
+            <input type="text" id="nombre" name="nombre" autocomplete="given-name" required>
           </div>
           <div>
             <label for="correo">{t("Correo", "Email")}</label>
-            <input type="email" id="correo" name="EMAIL" autocomplete="email" spellcheck="false" required>
+            <input type="email" id="correo" name="correo" autocomplete="email" spellcheck="false" required>
           </div>
+          <fieldset class="artistas-favoritos">
+            <legend>{t("Artistas favoritos", "Favorite artists")} *</legend>
+{casillas}
+          </fieldset>
           <div class="casilla">
             <input type="checkbox" id="acepto" name="acepto" required>
-            <label for="acepto">{t("Quiero recibir noticias de Alzada y sus artistas.", "I want to get news from Alzada and its artists.")}</label>
+            <label for="acepto">{t("Acepto recibir comunicaciones de mis artistas favoritos.", "I agree to receive news from my favorite artists.")}</label>
           </div>
-          <div class="trampa" aria-hidden="true"><input type="text" name="{TRAMPA}" tabindex="-1" value="" autocomplete="off"></div>
+          <p class="trampa" aria-hidden="true"><label>{t("No llenar", "Leave empty")} <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <button class="boton" type="submit">{t("Suscribirme", "Subscribe")}</button>
           <p class="form-mensaje" role="status" aria-live="polite"></p>
+          <p class="form-nota">{t("Puedes darte de baja cuando quieras", "You can unsubscribe at any time")}: <a href="{ruta_baja()}">{t("darme de baja", "unsubscribe")}</a>.</p>
         </form>
         </div>
       </div>
@@ -497,7 +509,7 @@ def pagina_artista(a):
           data-auto-style="false"></a>
       </div>
     </section>
-{newsletter()}{pie()}"""
+{newsletter(a['nombre'])}{pie()}"""
     guardar(u(f"/{a['slug']}/"), html)
 
 
@@ -546,19 +558,6 @@ def contacto():
             <legend>{escape(etiqueta(tp))}</legend>
 {chr(10).join(campo_extra(*c, tp["id"]) for c in tp["campos"])}
           </fieldset>''' for tp in TIPOS)
-    # Copias ocultas para que Netlify registre cada tipo como formulario aparte (solo en la versión en español;
-    # los envíos en inglés llegan a los mismos formularios).
-    ocultos = ""
-    if LANG == "es":
-        todos = ["nombre", "correo", "pais", "telefono", "tipo", "mensaje"]
-        filas = []
-        for tp in TIPOS:
-            nombres = todos + [c[0] for c in tp["campos"]]
-            campos = "".join(f'<input name="{n}">' for n in nombres)
-            filas.append(f'  <form name="contacto-{tp["id"]}" data-netlify="true" netlify-honeypot="bot-field" hidden>'
-                         f'<input name="bot-field">{campos}</form>')
-        ocultos = ("  <!-- Copias ocultas para Netlify Forms (una por tipo de solicitud). No se ven en la página. -->\n"
-                   + "\n".join(filas) + "\n")
     html += f"""
     <section class="seccion contacto" id="formulario">
       <div class="contenedor contacto-grid">
@@ -568,7 +567,6 @@ def contacto():
         </div>
 
         <form id="form-contacto" class="form-contacto" method="post" novalidate>
-          <input type="hidden" name="form-name" value="contacto-booking">
           <p class="trampa" aria-hidden="true"><label>{t("No llenar", "Leave empty")} <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <div>
             <label for="c-nombre">{t("Nombre", "Name")} *</label>
@@ -605,8 +603,34 @@ def contacto():
       </div>
     </section>
 
-{ocultos}{pie()}"""
+{pie()}"""
     guardar(ruta_contacto(), html)
+
+
+# ---------- Darse de baja ----------
+def pagina_baja():
+    html = cabeza(t("Darme de baja | Alzada Records", "Unsubscribe | Alzada Records"),
+                  t("Deja de recibir correos de Alzada y sus artistas.", "Stop getting emails from Alzada and its artists."),
+                  (ruta_baja("es"), ruta_baja("en")), "/img/compartir.jpg")
+    html = html.replace('<meta name="viewport"', '<meta name="robots" content="noindex">\n  <meta name="viewport"', 1)
+    html += f"""
+    <section class="seccion">
+      <div class="contenedor contenedor-angosto">
+        <h1>{t("Darme de baja", "Unsubscribe")}</h1>
+        <p class="seccion-intro">{t("Escribe tu correo y dejarás de recibir correos de Alzada y sus artistas.", "Enter your email and you’ll stop getting emails from Alzada and its artists.")}</p>
+        <form class="form-baja form-contacto" data-sitio="alzada" novalidate>
+          <div>
+            <label for="b-correo">{t("Correo", "Email")} *</label>
+            <input type="email" id="b-correo" name="correo" autocomplete="email" spellcheck="false" required>
+          </div>
+          <p class="trampa" aria-hidden="true"><label>{t("No llenar", "Leave empty")} <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <button class="boton" type="submit">{t("Darme de baja", "Unsubscribe")}</button>
+          <p class="form-mensaje" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+{pie()}"""
+    guardar(ruta_baja(), html)
 
 
 # ---------- 404 ----------
@@ -654,8 +678,9 @@ for LANG in ("es", "en"):
     inicio()
     contacto()
     pagina_404()
+    pagina_baja()
     for artista in ARTISTAS:
         pagina_artista(artista)
-    paginas += 3 + len(ARTISTAS)
+    paginas += 4 + len(ARTISTAS)
 sitemap()
 print("Listo:", paginas, "páginas")

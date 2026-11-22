@@ -1,11 +1,10 @@
-// Formulario de Contacto: muestra las preguntas según el tipo de solicitud,
-// lo envía a Netlify Forms como "contacto-<tipo>" y enseña el mensaje de ese tipo.
-// Netlify manda el aviso por correo a quien atiende cada tipo (se configura en Netlify).
-// "Talento – Envío de material" no va a Netlify: se guarda en una hoja de Google Sheets
-// del Drive personal de Lorenzo (ver herramientas/apps-script-talento.gs) y no avisa a nadie.
+// Formulario de Contacto: muestra las preguntas según el tipo de solicitud y lo guarda en la
+// hoja de Google "Alzada – Fans y contacto" (una pestaña por tipo) por medio del Apps Script
+// (herramientas/apps-script-formularios.gs). El script le avisa por correo a Charlie,
+// salvo "Talento – Envío de material", que solo se guarda.
 
-// URL de la aplicación web de Apps Script de la hoja "Alzada – Envíos de talento".
-const TALENTO_URL = "https://script.google.com/macros/s/AKfycbzJysmieOQpNjOfEHKlE8DDbaUZ8oqQT-lryZgElxL2Nhw0Fs1N8yVPG2eNvp4VKt1A/exec";
+// URL de la aplicación web de Apps Script (la misma en Alzada, Ladrones y Tattoo Music Fest).
+const CONTACTO_URL = "https://script.google.com/macros/s/AKfycbw3XUBhCSspVCCI3nQIg-GEtVpGP2ZChQPaZpUB65EthL0vXAobaTE8q3tlmMF5dasO/exec";
 
 const form = document.getElementById("form-contacto");
 
@@ -48,25 +47,18 @@ if (form) {
       return;
     }
 
-    const datos = new FormData(form);
-    datos.set("form-name", "contacto-" + tipo.value);
+    const datos = new URLSearchParams(new FormData(form));
+    datos.set("accion", "contacto");
+    datos.set("sitio", "alzada");
+    datos.set("idioma", CONTACTO_EN ? "en" : "es");
     const boton = form.querySelector('button[type="submit"]');
     boton.disabled = true;
     mensaje.textContent = T.enviando;
 
     try {
-      if (tipo.value === "talento") {
-        if (!TALENTO_URL) throw new Error("Falta TALENTO_URL");
-        // Apps Script no deja leer su respuesta desde otro sitio ("no-cors"); si no hay error de red, llegó.
-        await fetch(TALENTO_URL, { method: "POST", mode: "no-cors", body: new URLSearchParams(datos) });
-      } else {
-        const respuesta = await fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(datos).toString(),
-        });
-        if (!respuesta.ok) throw new Error(respuesta.status);
-      }
+      if (!CONTACTO_URL.startsWith("https://")) throw new Error("Falta CONTACTO_URL");
+      // Apps Script no deja leer su respuesta desde otro sitio ("no-cors"); si no hay error de red, llegó.
+      await fetch(CONTACTO_URL, { method: "POST", mode: "no-cors", body: datos });
       const opcion = tipo.options[tipo.selectedIndex];
       gracias.querySelector("p").textContent = opcion.dataset.gracias;
       form.hidden = true;
