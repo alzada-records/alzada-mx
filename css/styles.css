@@ -1200,3 +1200,18 @@ label {
 .contenedor-angosto {
   max-width: 560px;
 }
+
+/* ---------- Aviso de privacidad ---------- */
+.texto-legal h2 {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+.texto-legal p,
+.texto-legal li {
+  line-height: 1.6;
+}
+
+.texto-legal a {
+  color: inherit;
+}

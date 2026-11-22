@@ -25,6 +25,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/contacto/"/>
   </url>
   <url>
+    <loc>https://www.alzada.mx/privacidad/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/privacidad/"/>
+  </url>
+  <url>
+    <loc>https://www.alzada.mx/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.alzada.mx/privacidad/"/>
+  </url>
+  <url>
     <loc>https://www.alzada.mx/ladrones/</loc>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.alzada.mx/ladrones/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.alzada.mx/en/ladrones/"/>

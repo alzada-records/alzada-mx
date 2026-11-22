@@ -113,6 +113,10 @@ def ruta_contacto(lang=None):
     return "/en/contact/" if (lang or LANG) == "en" else "/contacto/"
 
 
+def ruta_privacidad(lang=None):
+    return "/en/privacy/" if (lang or LANG) == "en" else "/privacidad/"
+
+
 def ruta_baja(lang=None):
     return "/en/unsubscribe/" if (lang or LANG) == "en" else "/baja/"
 
@@ -258,7 +262,7 @@ def newsletter(marcado=None):
           <p class="trampa" aria-hidden="true"><label>{t("No llenar", "Leave empty")} <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <button class="boton" type="submit">{t("Suscribirme", "Subscribe")}</button>
           <p class="form-mensaje" role="status" aria-live="polite"></p>
-          <p class="form-nota">{t("Puedes darte de baja cuando quieras", "You can unsubscribe at any time")}: <a href="{ruta_baja()}">{t("darme de baja", "unsubscribe")}</a>.</p>
+          <p class="form-nota">{t("Consulta nuestro", "See our")} <a href="{ruta_privacidad()}">{t("aviso de privacidad", "privacy notice")}</a>. {t("Puedes darte de baja cuando quieras", "You can unsubscribe at any time")}: <a href="{ruta_baja()}">{t("darme de baja", "unsubscribe")}</a>.</p>
         </form>
         </div>
       </div>
@@ -276,7 +280,7 @@ def pie():
       <ul class="redes">
 {lista_redes(REDES_ALZADA, 28, False, "Alzada")}
       </ul>
-      <p>© 2027 <span translate="no">Alzada</span></p>
+      <p>© 2027 <span translate="no">Alzada</span> · <a href="{ruta_privacidad()}">{t("Aviso de privacidad", "Privacy notice")}</a></p>
     </div>
   </footer>
 </body>
@@ -594,6 +598,7 @@ def contacto():
           </div>
           <button class="boton" type="submit">{t("Enviar", "Send")}</button>
           <p class="form-mensaje" role="status" aria-live="polite"></p>
+          <p class="form-nota">{t("Al enviar aceptas nuestro", "By sending you accept our")} <a href="{ruta_privacidad()}">{t("aviso de privacidad", "privacy notice")}</a>.</p>
         </form>
 
         <div class="contacto-gracias" id="contacto-gracias" tabindex="-1" hidden>
@@ -605,6 +610,25 @@ def contacto():
 
 {pie()}"""
     guardar(ruta_contacto(), html)
+
+
+# ---------- Aviso de privacidad ----------
+def pagina_privacidad():
+    import privacidad_datos as P
+    html = cabeza(t("Aviso de privacidad | Alzada Records", "Privacy notice | Alzada Records"),
+                  t("Cómo usamos y protegemos tus datos personales en alzada.mx y ladrones.mx.", "How we use and protect your personal data on alzada.mx and ladrones.mx."),
+                  (ruta_privacidad("es"), ruta_privacidad("en")), "/img/compartir.jpg")
+    texto = (P.EN if LANG == "en" else P.ES).format(**{k: escape(v) for k, v in P.RESPONSABLE.items()})
+    html += f"""
+    <section class="seccion">
+      <div class="contenedor contenedor-angosto texto-legal">
+        <h1>{t("Aviso de privacidad", "Privacy notice")}</h1>
+        <p class="seccion-intro">{t("Última actualización", "Last updated")}: {t(*P.ACTUALIZADO)}</p>
+{texto}
+      </div>
+    </section>
+{pie()}"""
+    guardar(ruta_privacidad(), html)
 
 
 # ---------- Darse de baja ----------
@@ -653,7 +677,7 @@ def pagina_404():
 
 # ---------- Sitemap (los dos idiomas, con su par en el otro idioma) ----------
 def sitemap():
-    pares = [("/", "/en/"), (ruta_contacto("es"), ruta_contacto("en"))] + \
+    pares = [("/", "/en/"), (ruta_contacto("es"), ruta_contacto("en")), (ruta_privacidad("es"), ruta_privacidad("en"))] + \
             [(f"/{a['slug']}/", f"/en/{a['slug']}/") for a in ARTISTAS]
     bloques = []
     for es, en in pares:
@@ -679,8 +703,9 @@ for LANG in ("es", "en"):
     contacto()
     pagina_404()
     pagina_baja()
+    pagina_privacidad()
     for artista in ARTISTAS:
         pagina_artista(artista)
-    paginas += 4 + len(ARTISTAS)
+    paginas += 5 + len(ARTISTAS)
 sitemap()
 print("Listo:", paginas, "páginas")
