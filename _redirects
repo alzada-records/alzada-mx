@@ -13,5 +13,32 @@ https://alzada.mx/*  https://www.alzada.mx/:splat  301!
 /profile/*         /           301
 /members/*         /           301
 
+# Páginas del sitio viejo de WordPress (siguen en Google)
+/artistas          /#roster    301
+/artistas/*        /#roster    301
+/roster            /#roster    301
+/lefty-sm          /           301
+/home              /           301
+/contact           /contacto/  301
+/category/*        /           301
+/tag/*             /           301
+/author/*          /           301
+/page/*            /           301
+/feed              /           301
+/feed/*            /           301
+/wp-content/*      /           301
+
+# Versiones en inglés de las páginas viejas de Wix
+/en/nosotros         /en/#nosotros  301
+/en/about            /en/#nosotros  301
+/en/sync-licensing   /en/#sync      301
+/en/contacto         /en/contact/   301
+/en/blog             /en/           301
+/en/blog/*           /en/           301
+/en/post/*           /en/           301
+/en/event-details/*  /en/           301
+/en/profile/*        /en/           301
+/en/members/*        /en/           301
+
 # Página de error en inglés
 /en/*  /en/404.html  404
